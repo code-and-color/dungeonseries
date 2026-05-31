@@ -1,21 +1,27 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 
+const CONTACT_TITLE = "Contact · Dungeon Series Chicago";
+const CONTACT_DESC =
+  "Booking inquiries, partnerships, and press for Dungeon Series — based in Chicago, IL.";
+
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact · Dungeon Series Chicago" },
-      {
-        name: "description",
-        content:
-          "Booking inquiries, partnerships, and press for Dungeon Series — based in Chicago, IL.",
-      },
-      { property: "og:title", content: "Contact · Dungeon Series" },
-      {
-        property: "og:description",
-        content: "Reach Chicago HQ. Bookings, partnerships, press.",
-      },
+      { title: CONTACT_TITLE },
+      { name: "description", content: CONTACT_DESC },
+      { property: "og:title", content: CONTACT_TITLE },
+      { property: "og:description", content: CONTACT_DESC },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/contact" },
+      { property: "og:image", content: "/og-image.png" },
+      { property: "og:image:alt", content: "Dungeon Series emblem" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: CONTACT_TITLE },
+      { name: "twitter:description", content: CONTACT_DESC },
+      { name: "twitter:image", content: "/og-image.png" },
     ],
+    links: [{ rel: "canonical", href: "/contact" }],
   }),
   component: ContactPage,
 });

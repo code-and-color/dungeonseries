@@ -1,21 +1,27 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 
+const PRICING_TITLE = "Membership · Dungeon Series Chicago";
+const PRICING_DESC =
+  "Choose your tier of immersion at Dungeon Series — General, VIP, or Inner Circle. Chicago underground membership.";
+
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "Membership · Dungeon Series Chicago" },
-      {
-        name: "description",
-        content:
-          "Choose your tier of immersion at Dungeon Series — General, VIP, or Inner Circle. Chicago underground membership.",
-      },
-      { property: "og:title", content: "Membership · Dungeon Series" },
-      {
-        property: "og:description",
-        content: "From entry-level chaos to restricted inner-circle dominance.",
-      },
+      { title: PRICING_TITLE },
+      { name: "description", content: PRICING_DESC },
+      { property: "og:title", content: PRICING_TITLE },
+      { property: "og:description", content: PRICING_DESC },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/pricing" },
+      { property: "og:image", content: "/og-image.png" },
+      { property: "og:image:alt", content: "Dungeon Series emblem" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: PRICING_TITLE },
+      { name: "twitter:description", content: PRICING_DESC },
+      { name: "twitter:image", content: "/og-image.png" },
     ],
+    links: [{ rel: "canonical", href: "/pricing" }],
   }),
   component: PricingPage,
 });

@@ -80,12 +80,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Dungeon Series · Chicago" },
       { name: "description", content: "Chicago's underground sanctuary for high-fidelity sound and exclusive nocturnal events." },
       { name: "author", content: "Dungeon Series" },
-      { property: "og:title", content: "Dungeon Series · Chicago" },
-      { property: "og:description", content: "The Sanctuary of Sound." },
+      { property: "og:site_name", content: "Dungeon Series" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "/og-image.png" },
+      { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "/og-image.png" },
+      { name: "twitter:site", content: "@dungeonseries" },
     ],
     links: [
       { rel: "icon", type: "image/png", href: "/favicon.png" },
@@ -93,6 +92,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: appCss,
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Dungeon Series",
+          description:
+            "Chicago's underground sanctuary for high-fidelity sound and exclusive nocturnal events.",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "1247 W Fulton Market",
+            addressLocality: "Chicago",
+            addressRegion: "IL",
+            addressCountry: "US",
+          },
+          logo: "/og-image.png",
+        }),
       },
     ],
   }),
