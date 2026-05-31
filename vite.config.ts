@@ -6,10 +6,31 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// When deploying to GitHub Pages under a project page (username.github.io/dungeon-series/),
+// set BASE_PATH=/dungeon-series/ at build time. Lovable preview leaves it unset → "/".
+const basePath = process.env.BASE_PATH ?? "/";
+
+// Static export for GitHub Pages: prerender every page to plain HTML.
+const STATIC_EXPORT = process.env.STATIC_EXPORT === "true";
+
 export default defineConfig({
+  vite: {
+    base: basePath,
+  },
   tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
     server: { entry: "server" },
+    ...(STATIC_EXPORT && {
+      prerender: {
+        enabled: true,
+        crawlLinks: true,
+        routes: ["/", "/events", "/pricing", "/contact"],
+      },
+      pages: [
+        { path: "/" },
+        { path: "/events" },
+        { path: "/pricing" },
+        { path: "/contact" },
+      ],
+    }),
   },
 });
