@@ -3,9 +3,11 @@ export function Footer() {
     <footer className="w-full bg-surface-container-lowest border-t border-white/10">
       <div className="flex flex-col md:flex-row justify-between items-center px-6 md:px-margin-desktop py-stack-lg gap-stack-md max-w-container-max mx-auto">
         <div className="flex flex-col gap-4">
-          <span className="font-headline-md text-headline-md text-primary font-extrabold tracking-tighter uppercase">
-            DUNGEON SERIES
-          </span>
+          <img
+            src="/og-image.png"
+            alt="Dungeon Series"
+            className="h-8 w-auto object-contain brightness-150"
+          />
           <p className="font-label-caps text-[10px] text-on-secondary-fixed-variant tracking-widest uppercase">
             © 2026 DUNGEON SERIES · CHICAGO, IL · NO ESCAPE.
           </p>
