@@ -12,11 +12,12 @@ export function Header() {
     <header className="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-xl border-b border-white/15">
       <nav className="flex justify-between items-center px-6 md:px-margin-desktop py-4 max-w-container-max mx-auto">
         <div className="flex items-center gap-12">
-          <Link
-            to="/"
-            className="font-headline-md text-headline-md font-extrabold text-primary-container tracking-tighter uppercase"
-          >
-            DUNGEON SERIES
+          <Link to="/" className="flex items-center">
+            <img
+              src="/og-image.png"
+              alt="Dungeon Series"
+              className="h-8 md:h-10 w-auto object-contain"
+            />
           </Link>
           <div className="hidden md:flex gap-8">
             {navLinks.map((l) => (
