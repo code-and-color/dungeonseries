@@ -77,14 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Dungeon Series · Chicago" },
+      { name: "description", content: "Chicago's underground sanctuary for high-fidelity sound and exclusive nocturnal events." },
+      { name: "author", content: "Dungeon Series" },
+      { property: "og:title", content: "Dungeon Series · Chicago" },
+      { property: "og:description", content: "The Sanctuary of Sound." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
