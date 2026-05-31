@@ -1,22 +1,27 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 
+const HOME_TITLE = "Dungeon Series | The Sanctuary — Chicago Events";
+const HOME_DESC =
+  "Dungeon Series is Chicago's underground sanctuary for high-fidelity sound and exclusive nocturnal events.";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dungeon Series | The Sanctuary — Chicago Events" },
-      {
-        name: "description",
-        content:
-          "Dungeon Series is Chicago's underground sanctuary for high-fidelity sound and exclusive nocturnal events.",
-      },
-      { property: "og:title", content: "Dungeon Series | The Sanctuary" },
-      {
-        property: "og:description",
-        content:
-          "A curated descent into Chicago's electronic subculture and exclusive nocturnal rituals.",
-      },
+      { title: HOME_TITLE },
+      { name: "description", content: HOME_DESC },
+      { property: "og:title", content: HOME_TITLE },
+      { property: "og:description", content: HOME_DESC },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { property: "og:image", content: "/og-image.png" },
+      { property: "og:image:alt", content: "Dungeon Series emblem" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: HOME_TITLE },
+      { name: "twitter:description", content: HOME_DESC },
+      { name: "twitter:image", content: "/og-image.png" },
     ],
+    links: [{ rel: "canonical", href: "/" }],
   }),
   component: HomePage,
 });

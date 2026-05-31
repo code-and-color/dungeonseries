@@ -1,21 +1,27 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 
+const EVENTS_TITLE = "Events · Dungeon Series Chicago";
+const EVENTS_DESC =
+  "The operational calendar for Dungeon Series — weekly rituals, annual anthems, and one-night summits across Chicago.";
+
 export const Route = createFileRoute("/events")({
   head: () => ({
     meta: [
-      { title: "Events · Dungeon Series Chicago" },
-      {
-        name: "description",
-        content:
-          "The operational calendar for Dungeon Series — weekly rituals, annual anthems, and one-night summits across Chicago.",
-      },
-      { property: "og:title", content: "Events · Dungeon Series" },
-      {
-        property: "og:description",
-        content: "Weekly rituals and annual anthems. Chicago's underground calendar.",
-      },
+      { title: EVENTS_TITLE },
+      { name: "description", content: EVENTS_DESC },
+      { property: "og:title", content: EVENTS_TITLE },
+      { property: "og:description", content: EVENTS_DESC },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/events" },
+      { property: "og:image", content: "/og-image.png" },
+      { property: "og:image:alt", content: "Dungeon Series emblem" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: EVENTS_TITLE },
+      { name: "twitter:description", content: EVENTS_DESC },
+      { name: "twitter:image", content: "/og-image.png" },
     ],
+    links: [{ rel: "canonical", href: "/events" }],
   }),
   component: EventsPage,
 });
