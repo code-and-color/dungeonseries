@@ -37,12 +37,12 @@ export function Header() {
           </div>
         </div>
         <div className="flex items-center gap-6">
-          <button className="hidden md:inline-block font-label-caps text-label-caps text-on-background hover:text-primary-container transition-all duration-300 active:scale-95">
-            LOGIN
-          </button>
-          <button className="bg-primary-container text-white px-8 py-3 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95">
-            JOIN
-          </button>
+          <Link
+            to="/events"
+            className="bg-primary-container text-white px-8 py-3 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95"
+          >
+            GET TICKETS
+          </Link>
         </div>
       </nav>
     </header>
