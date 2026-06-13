@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 const navLinks = [
   { to: "/", label: "HOME" },
   { to: "/events", label: "EVENTS" },
+  { to: "/calendar", label: "CALENDAR" },
   { to: "/pricing", label: "PRICING" },
   { to: "/contact", label: "CONTACT" },
 ] as const;
@@ -38,7 +39,7 @@ export function Header() {
         </div>
         <div className="flex items-center gap-6">
           <Link
-            to="/events"
+            to="/calendar"
             className="bg-primary-container text-white px-8 py-3 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95"
           >
             GET TICKETS
