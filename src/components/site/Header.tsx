@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
 
+const assetBase = import.meta.env.BASE_URL ?? "/";
+
 const navLinks = [
   { to: "/", label: "HOME" },
   { to: "/events", label: "EVENTS" },
@@ -16,7 +18,7 @@ export function Header() {
         <div className="flex items-center gap-12">
           <Link to="/" className="flex items-center">
             <img
-              src="/og-image.png"
+              src={`${assetBase}og-image.png`}
               alt="Dungeon Series"
               className="h-8 md:h-10 w-auto object-contain"
             />

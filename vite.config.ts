@@ -6,8 +6,8 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-// When deploying to GitHub Pages under a project page (username.github.io/dungeon-series/),
-// set BASE_PATH=/dungeon-series/ at build time. Lovable preview leaves it unset → "/".
+// When deploying to GitHub Pages under a project page (username.github.io/dungeonseries/),
+// set BASE_PATH=/dungeonseries/ at build time. Lovable preview leaves it unset → "/".
 const basePath = process.env.BASE_PATH ?? "/";
 
 // Static export for GitHub Pages: prerender every page to plain HTML.

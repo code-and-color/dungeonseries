@@ -29,7 +29,7 @@ jobs:
 
       - name: Build static site
         env:
-          BASE_PATH: /dungeon-series/
+          BASE_PATH: /dungeonseries/
           STATIC_EXPORT: "true"
         run: bun run build
 

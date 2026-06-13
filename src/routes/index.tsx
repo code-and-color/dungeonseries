@@ -1,5 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
+
+const baseUrl = import.meta.env.BASE_URL ?? "/";
 
 const HOME_TITLE = "Dungeon Series | The Sanctuary — Chicago Events";
 const HOME_DESC =
@@ -13,15 +15,15 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: HOME_TITLE },
       { property: "og:description", content: HOME_DESC },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
-      { property: "og:image", content: "/og-image.png" },
+      { property: "og:url", content: baseUrl },
+      { property: "og:image", content: `${baseUrl}og-image.png` },
       { property: "og:image:alt", content: "Dungeon Series emblem" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: HOME_TITLE },
       { name: "twitter:description", content: HOME_DESC },
-      { name: "twitter:image", content: "/og-image.png" },
+      { name: "twitter:image", content: `${baseUrl}og-image.png` },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: baseUrl }],
   }),
   component: HomePage,
 });
@@ -83,7 +85,7 @@ function HomePage() {
             </p>
           </div>
           <a
-            href="/events"
+            href={`${baseUrl}events`}
             className="font-label-caps text-label-caps text-primary border-b border-primary pb-1 hover:text-primary-container hover:border-primary-container transition-colors"
           >
             VIEW ALL EVENTS

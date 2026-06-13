@@ -1,10 +1,12 @@
+const assetBase = import.meta.env.BASE_URL ?? "/";
+
 export function Footer() {
   return (
     <footer className="w-full bg-surface-container-lowest border-t border-white/10">
       <div className="flex flex-col md:flex-row justify-between items-center px-6 md:px-margin-desktop py-stack-lg gap-stack-md max-w-container-max mx-auto">
         <div className="flex flex-col gap-4">
           <img
-            src="/og-image.png"
+            src={`${assetBase}og-image.png`}
             alt="Dungeon Series"
             className="h-8 w-auto object-contain brightness-150"
           />
