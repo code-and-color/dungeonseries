@@ -4,6 +4,7 @@ const navLinks = [
   { to: "/", label: "HOME" },
   { to: "/events", label: "EVENTS" },
   { to: "/calendar", label: "CALENDAR" },
+  { to: "/vendors", label: "VENDORS" },
   { to: "/pricing", label: "PRICING" },
   { to: "/contact", label: "CONTACT" },
 ] as const;
