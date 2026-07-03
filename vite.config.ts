@@ -16,6 +16,10 @@ const STATIC_EXPORT = process.env.STATIC_EXPORT === "true";
 export default defineConfig({
   vite: {
     base: basePath,
+    // Disable the HMR overlay to avoid blocking the page while debugging CSS issues.
+    server: {
+      hmr: { overlay: false },
+    },
   },
   tanstackStart: {
     server: { entry: "server" },
