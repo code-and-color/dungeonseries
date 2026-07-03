@@ -1,11 +1,13 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { events, VENDOR_PACKET_URL, resolveImage } from "@/data/events";
 
 const baseUrl = import.meta.env.BASE_URL ?? "/";
 
-const HOME_TITLE = "Dungeon Series | The Sanctuary — Chicago Events";
+const HOME_TITLE = "Dungeon Series Festival · August 9, 2026 · Chicago";
 const HOME_DESC =
-  "Dungeon Series is Chicago's underground sanctuary for high-fidelity sound and exclusive nocturnal events.";
+  "The Dungeon Series Festival returns August 9, 2026 in Chicago. One day. One descent. Get tickets, view the lineup, and become a vendor.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,211 +30,321 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const socialTiles = [
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuAGyPoXkjlzaJOv1peXtw3m5VDfWKGyPkIrDo5H-ftfQL4Y8C_DAgqIInWPDqPyGQM8TZtBjdVgfYuZjvtNi_sNHYjlKTW9cE071eumSPjlQdf_88AQ1ClEiY4dRglVtl7wzLIRwrszcbH21qn9LGMB3c3YTpXxssLI-FSt0Mh6TFvy6GbyX5X7VOXsSMsgrLGHVcOMRlnT8NXCfzDcLI4LZdStz6faoZlam39E_a_iX0OeJB8DHO7C4RVruJMhx6PR7vH3Dg7iahAB",
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuC9pFtBYl0xlp6lKCKJDlAnSQwpYVtUQ4cvn-X59TnEb1nMKwacxbSZMtlD4g0RTNaFp4XByMSwGx56l7LjJGcvjdCBzvZ7OkDgkteOUgqci3xaMCLFSVG29T7ZDBb0g8zmJo9fNS-vRzUQ5kdPR37bq9M6Ia4zHtLkI_-qJzJNtqzookr0Z15doqbUbNQa7i65OKVLWs2RycrXCF9Ftjb5wWwbHpGKKKlIOLMB7KlHWVAKCmKL5GhbpA_GedTxt9ndUsejIZfLdVML",
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuCRtVg37tWmqVhuMQvYgXT8J0yzWioNz7mWHxcreDx4M5LpDz-0bK0bSbH2NZloUUQnCLJe5N6ZxiwBs_-sS491zP7Jv4rriJlQCGiPp1WXIijyJv8LVIwu46EMFSVOF2z-UsRJ9ne3k7rtqAvO1x-fDInb_i6wvT8RUixSeBk0NOIL1LnOaaIl7XoHgAICiHb3VJyouwL6m6nTWc0oSWvYCMWSzfPBWNAzN1LS8gNS-NNDIfTOtZTZjsO9C9ic2mrHTUbOIqOh2fQ4",
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuBCqSDo5LICAwtdlSR18sHaSabYR672bOTbCc5ZQglKS6iweJ-Op9SEc2lKgt1fCMCJyX4AGtIP-OPvNzC5AWHhSdrCYjL3d6VY6IkYG22RdKrf23-uIlqDDzBUosYVWSlLgUZ8zKvdWQdIsBHMl_GDuYq3ghdJ_k3dTDSkG2asXhFjDUZA3LgShOqUTkoERHm7prT8-h-_K1blabdk9zgCdwN_XtNAezdDPpF8adhJjf31xgQGHl4Q5iCU8nEX2gyo4GiLxsGBuUad",
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuBgfuYwrYi8tni0OY_iItiHLPBlo7MvUNWZMF9dg-QxxgvazsFQf9dsx8USTla5Anl7w_0bOJtXW17Bs8CE9rS06WQ-h3zi1ZFf0vgTbhQ0vcVj0QCBy_nQgGmZSjB45Vxf_h9vjV6FZfpoKqQKCnDv5tC2b1FESY8Ab32G2akUJXeq9aw8sIAEGX3S6HlkDdy_Td8L7UAskcbDW6dfMR5ZZAcG5mvx0d7hWlGN564B46cadDEBLbLm8rhBjNBeHVuXPTU7rBaVBAQC",
+// ─── Countdown ──────────────────────────────────────────────────────────────
+function useCountdown(targetIso: string) {
+  const target = new Date(`${targetIso}T14:00:00-05:00`).getTime();
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const diff = Math.max(0, target - now);
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff / 3600000) % 24);
+  const m = Math.floor((diff / 60000) % 60);
+  const s = Math.floor((diff / 1000) % 60);
+  return { d, h, m, s };
+}
+
+const pad = (n: number) => n.toString().padStart(2, "0");
+
+function CountdownUnit({ value, label }: { value: number; label: string }) {
+  return (
+    <div className="flex flex-col items-center">
+      <div className="glass-panel px-4 py-3 md:px-6 md:py-4 min-w-[72px] md:min-w-[96px] text-center">
+        <span className="font-headline-lg text-headline-md md:text-headline-lg text-on-background tabular-nums">
+          {pad(value)}
+        </span>
+      </div>
+      <span className="font-label-caps text-[10px] tracking-[0.25em] text-on-background/50 mt-2">
+        {label}
+      </span>
+    </div>
+  );
+}
+
+// ─── Placeholder lineup (edit freely) ───────────────────────────────────────
+const HEADLINERS = [
+  "TBA HEADLINER",
+  "TBA HEADLINER",
+  "TBA HEADLINER",
+  "TBA HEADLINER",
+];
+const LINEUP = [
+  "ARTIST ONE",
+  "ARTIST TWO",
+  "ARTIST THREE",
+  "ARTIST FOUR",
+  "ARTIST FIVE",
+  "ARTIST SIX",
+  "ARTIST SEVEN",
+  "ARTIST EIGHT",
+];
+
+const STATS = [
+  { value: "1", suffix: "", label: "DAY OF MUSIC" },
+  { value: "12", suffix: "+", label: "HOURS" },
+  { value: "20", suffix: "+", label: "ARTISTS" },
+  { value: "1", suffix: "", label: "CITY · CHICAGO" },
+];
+
+const FAQS = [
+  {
+    q: "Is this a rain or shine event?",
+    a: "Yes — the festival takes place rain or shine. No refunds for weather.",
+  },
+  {
+    q: "What time do gates open?",
+    a: "Gates open at 2:00 PM. Music runs until late night. Arrive early to skip the line.",
+  },
+  {
+    q: "How do I receive my tickets?",
+    a: "All tickets are delivered digitally through TicketFalcon. Bring a screenshot or printout to entry.",
+  },
+  {
+    q: "Are there age restrictions?",
+    a: "The festival is 21+. Valid government-issued ID required at the door.",
+  },
+  {
+    q: "Can I bring outside food or drinks?",
+    a: "No outside food, drinks, or coolers. Food trucks and full bars will be on-site.",
+  },
+  {
+    q: "How do I become a vendor or sponsor?",
+    a: "Download the vendor packet at the bottom of this page, then email us at bookings@dungeonseries.com.",
+  },
 ];
 
 function HomePage() {
+  const festival = events.find((e) => e.featured) ?? events[0];
+  const { d, h, m, s } = useCountdown(festival.date);
+  const heroFlyer = festival.flyers?.[0];
+
   return (
     <SiteLayout>
-      {/* Hero */}
-      <section className="relative h-[921px] flex items-center overflow-hidden">
+      {/* ── HERO ─────────────────────────────────────────────────────────── */}
+      <section className="relative min-h-[92vh] flex items-center overflow-hidden border-b border-white/5">
         <div className="absolute inset-0 z-0">
           <img
-            className="w-full h-full object-cover grayscale-[0.4] brightness-[0.3]"
-            alt="High-end Chicago underground stage cut by crimson lasers through atmospheric haze."
+            className="w-full h-full object-cover grayscale-[0.5] brightness-[0.28]"
+            alt="Dungeon Series Festival crowd"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3rVvJQ07MtxeyYSP5N1vYZ029Zng8Wj2yKlHhCdrYqDjfUUwdBBELXoS9vHHFmY54nCJp-Nf8LXpLsASJMfgC7tMmEoDb57G5oaTJvsc2dH04lxyR0OQHT8ZOZDudqarfWLRiyylU63uai81h065Ghd5G61IC_W5nXbnqr_Oyzx0YqscjQojFUv9DOfXdKmXy2XU83qtrj4MkGPWgCAguUtSileqkNf5iJToJZCvfh6ESmG0X7bb7Zr2Mk9j0V7Epn81XK6UAZRRJ"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(255,85,64,0.18),transparent_60%)]" />
         </div>
-        <div className="relative z-10 px-6 md:px-margin-desktop max-w-container-max mx-auto w-full">
-          <div className="max-w-3xl">
-            <p className="font-label-caps text-label-caps text-primary-container mb-4 tracking-[0.3em]">
-              THE SANCTUARY · CHICAGO
-            </p>
-            <h1 className="font-headline-xl text-headline-xl text-on-background mb-8 leading-none uppercase">
-              SANCTUARY <br /> OF SOUND
-            </h1>
-            <p className="font-body-lg text-body-lg text-on-background/60 mb-10 max-w-xl">
-              Enter the perimeter of high-fidelity auditory experiences. A curated descent into the
-              depths of Chicago's electronic subculture and exclusive nocturnal events.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <button className="bg-primary-container text-white px-10 py-5 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95 neon-glow">
-                GET ACCESS
-              </button>
-              <button className="border border-white/20 text-white px-10 py-5 font-label-caps text-label-caps hover:bg-white/5 transition-all active:scale-95">
-                VIEW CALENDAR
-              </button>
-            </div>
+
+        <div className="relative z-10 w-full px-6 md:px-margin-desktop max-w-container-max mx-auto py-24 text-center">
+          <img
+            src={`${baseUrl}og-image.png`}
+            alt="Dungeon Series"
+            className="mx-auto w-28 md:w-36 mb-8 drop-shadow-[0_0_30px_rgba(255,85,64,0.35)]"
+          />
+          <p className="font-label-caps text-label-caps text-primary-container tracking-[0.4em] mb-6">
+            THE DUNGEON SERIES FESTIVAL
+          </p>
+          <h1 className="font-headline-xl text-headline-lg md:text-headline-xl text-on-background leading-[0.9] uppercase mb-8">
+            ONE DAY.<br />ONE DESCENT.
+          </h1>
+          <p className="font-body-lg text-on-background/70 max-w-xl mx-auto mb-10">
+            {festival.dateLabel} · {festival.venue}
+            <br />
+            <span className="text-on-background/50 text-body-md">{festival.timeLabel}</span>
+          </p>
+
+          {/* Countdown */}
+          <div className="flex justify-center gap-3 md:gap-5 mb-12">
+            <CountdownUnit value={d} label="DAYS" />
+            <CountdownUnit value={h} label="HOURS" />
+            <CountdownUnit value={m} label="MINUTES" />
+            <CountdownUnit value={s} label="SECONDS" />
+          </div>
+
+          <div className="flex flex-wrap gap-4 justify-center">
+            <a
+              href={festival.ticketUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="bg-primary-container text-white px-12 py-5 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95 neon-glow"
+            >
+              GET TICKETS
+            </a>
+            <a
+              href="#lineup"
+              className="border border-white/20 text-white px-12 py-5 font-label-caps text-label-caps hover:bg-white/5 transition-all active:scale-95"
+            >
+              VIEW LINEUP
+            </a>
           </div>
         </div>
       </section>
 
-      {/* Featured Rituals — Bento */}
-      <section className="py-stack-lg px-6 md:px-margin-desktop max-w-container-max mx-auto">
-        <div className="flex flex-wrap gap-4 justify-between items-end mb-12">
-          <div>
-            <h2 className="font-headline-lg text-headline-lg text-on-background mb-2 uppercase">
-              FEATURED RITUALS
-            </h2>
-            <p className="font-body-md text-body-md text-on-background/50">
-              Secure your passage to our upcoming sonic installments.
-            </p>
-          </div>
-          <a
-            href={`${baseUrl}events`}
-            className="font-label-caps text-label-caps text-primary border-b border-primary pb-1 hover:text-primary-container hover:border-primary-container transition-colors"
-          >
-            VIEW ALL EVENTS
-          </a>
+      {/* ── DATE MARQUEE ─────────────────────────────────────────────────── */}
+      <section className="border-b border-white/5 bg-surface-container-lowest overflow-hidden">
+        <div className="flex whitespace-nowrap animate-[marquee_40s_linear_infinite] py-6 md:py-8">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <span
+              key={i}
+              className="font-headline-lg text-[48px] md:text-[96px] uppercase tracking-tight text-on-background/10 px-8 flex items-center gap-8"
+            >
+              AUG · 09 · CHICAGO
+              <span className="text-primary-container">◆</span>
+            </span>
+          ))}
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:h-[700px]">
-          <div className="lg:col-span-8 group relative overflow-hidden glass-panel min-h-[400px]">
-            <img
-              className="absolute inset-0 w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105 opacity-60"
-              alt="DJ mixing on a Chicago warehouse stage in red neon."
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjXZXkOYE81ujAhymCP298ffEctMzYJRFFq2noTjwCe810Lzwf-pbWPJQWk1tYw-hu8C-xjZEt6Zats2XWIYrVmmrpvs81yvo1eUq12ANeChKoqmA20_usgJbN_5rpyKfTD4N_WdYcoRbDdvc_5CzDdCl0fPvRRgUTbSFVAx7i3vpjttIpL2hmakYT8uOYbxkziMBcyW4vlLivHZ9wtPOMZnvjGj-k7Gaym3AQI-wbzjRO-eFYgQXdA6gI2MtoAXuX7XbSrl-omi9N"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-            <div className="absolute bottom-0 left-0 p-10 w-full">
-              <div className="flex gap-2 mb-4">
-                <span className="bg-primary-container text-white px-3 py-1 font-label-caps text-[10px]">
-                  SOLD OUT
-                </span>
-                <span className="border border-white/30 text-white px-3 py-1 font-label-caps text-[10px]">
-                  EXCLUSIVE
+      </section>
+
+      {/* ── STATS ────────────────────────────────────────────────────────── */}
+      <section className="py-stack-lg px-6 md:px-margin-desktop max-w-container-max mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {STATS.map((st) => (
+            <div key={st.label} className="glass-panel p-8 text-center">
+              <div className="font-headline-lg text-headline-lg text-primary-container tabular-nums">
+                {st.value}
+                <span className="text-on-background/60">{st.suffix}</span>
+              </div>
+              <div className="font-label-caps text-[10px] tracking-[0.25em] text-on-background/50 mt-3">
+                {st.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── LINEUP ───────────────────────────────────────────────────────── */}
+      <section id="lineup" className="py-stack-lg bg-surface-container-lowest border-y border-white/5">
+        <div className="px-6 md:px-margin-desktop max-w-container-max mx-auto">
+          <p className="font-label-caps text-label-caps text-primary-container tracking-[0.3em] mb-3 text-center">
+            2026 LINEUP
+          </p>
+          <h2 className="font-headline-lg text-headline-lg text-on-background uppercase text-center mb-12">
+            MEET THE DUNGEON
+          </h2>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+            {HEADLINERS.map((name, i) => (
+              <div
+                key={i}
+                className="aspect-square glass-panel flex items-center justify-center p-4 text-center hover:border-primary-container/50 transition-colors"
+              >
+                <span className="font-headline-md text-[20px] uppercase text-on-background">
+                  {name}
                 </span>
               </div>
-              <h3 className="font-headline-md text-headline-md text-on-background mb-2 uppercase">
-                VOID // 004 : TECHNO NOIR
+            ))}
+          </div>
+
+          <div className="border-t border-white/10 pt-8">
+            <p className="font-label-caps text-[10px] tracking-[0.3em] text-on-background/40 mb-6 text-center">
+              WITH SUPPORT FROM
+            </p>
+            <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
+              {LINEUP.map((name) => (
+                <span
+                  key={name}
+                  className="font-headline-md text-[18px] md:text-[22px] uppercase text-on-background/70 hover:text-primary-container transition-colors"
+                >
+                  {name}
+                </span>
+              ))}
+            </div>
+            <p className="text-center text-on-background/40 text-body-md mt-8 italic">
+              Full lineup announced in waves. Follow @dungeonseries for drops.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FLYER ────────────────────────────────────────────────────────── */}
+      {heroFlyer && (
+        <section className="py-stack-lg px-6 md:px-margin-desktop max-w-container-max mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="glass-panel overflow-hidden">
+              <img
+                src={resolveImage(heroFlyer.src)}
+                alt={heroFlyer.alt}
+                className="w-full h-auto object-cover"
+              />
+            </div>
+            <div>
+              <p className="font-label-caps text-label-caps text-primary-container tracking-[0.3em] mb-4">
+                THE FLAGSHIP EVENT
+              </p>
+              <h3 className="font-headline-lg text-headline-md md:text-headline-lg text-on-background uppercase mb-6">
+                A ONE-DAY RITUAL IN CHICAGO
               </h3>
-              <div className="flex flex-wrap items-center gap-6 text-on-background/60 font-label-caps text-label-caps">
-                <span className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-[18px]">calendar_today</span> OCT
-                  24
-                </span>
-                <span className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-[18px]">location_on</span> THE
-                  VAULT · WEST LOOP
-                </span>
+              <p className="text-on-background/60 font-body-lg mb-8">
+                {festival.blurb}
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href={festival.ticketUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-primary-container text-white px-8 py-4 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95 neon-glow"
+                >
+                  BUY TICKETS
+                </a>
+                <a
+                  href={VENDOR_PACKET_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="border border-white/20 text-white px-8 py-4 font-label-caps text-label-caps hover:bg-white/5 transition-all"
+                >
+                  BECOME A VENDOR
+                </a>
               </div>
             </div>
           </div>
-          <div className="lg:col-span-4 flex flex-col gap-6">
-            {[
-              {
-                tag: "VINYL ONLY",
-                title: "ANALOG DEPTHS",
-                cta: "BOOK NOW",
-                src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBhM2O8A45qNDHZaLa-Z5CbwOKJ9cDzunyTtVMX-2teVu6kDH45JradOpLyZFF885qVcYJ8M0GvkmokuCnayOxoLj5bGNuVXpLnOOULN6tTIyYgE1zZ3Dz5KGiKE4iqvDHmWuHp2oV9JUoyW5e6ri6OZ8ksoLi3kV_khJ9ap9N2HwRJPOT3PTIC2jvsGTc-oNUuRTh34-SMRXu5np2IPBbE4BCIWdQJGe4xuyUhMtuRDQ2aDNcu-6JsnC72aeDRb1H1ffjJZzA9dEzE",
-              },
-              {
-                tag: "MEMBERS ONLY",
-                title: "THE RED ROOM",
-                cta: "JOIN WAITLIST",
-                src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAvw48hl7nBi7RNIbgiposCbVqpysIf0vZVe14P0oWmzT4ZbwOdavz2UTUUfgAR0KGYgaV7hUm33d4HpUhHfHEz0Nr9b3tdzAEApGGz4Rq76QtlNnRz6dmIcxD-Out8M-Qz8jS9Qc9yLR9DyRmOTuc_PrySDuXwktWJZq5RLZ76OhiZtLjUnssc0gnFKwHHKZi6HjPH--Y4ZeLycF_cAJMT5SxYfqnzmW2_ioCf26-wvQK9G_mOVFGPNOhZ_7vHCaCDoUu5-TGJHw4E",
-              },
-            ].map((c) => (
-              <div
-                key={c.title}
-                className="lg:h-1/2 min-h-[280px] group relative overflow-hidden glass-panel"
+        </section>
+      )}
+
+      {/* ── FAQ ──────────────────────────────────────────────────────────── */}
+      <section className="py-stack-lg bg-surface-container-lowest border-y border-white/5">
+        <div className="px-6 md:px-margin-desktop max-w-container-max mx-auto max-w-3xl">
+          <p className="font-label-caps text-label-caps text-primary-container tracking-[0.3em] mb-3 text-center">
+            KNOW BEFORE YOU GO
+          </p>
+          <h2 className="font-headline-lg text-headline-lg text-on-background uppercase text-center mb-12">
+            FAQS
+          </h2>
+          <div className="space-y-3">
+            {FAQS.map((f, i) => (
+              <details
+                key={i}
+                className="glass-panel p-6 group cursor-pointer"
               >
-                <img
-                  className="absolute inset-0 w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105 opacity-40"
-                  alt={c.title}
-                  src={c.src}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
-                <div className="absolute bottom-0 left-0 p-6">
-                  <p className="font-label-caps text-[10px] text-primary-container mb-1">{c.tag}</p>
-                  <h4 className="font-headline-md text-[24px] text-on-background mb-4 uppercase">
-                    {c.title}
-                  </h4>
-                  <button className="font-label-caps text-[10px] text-white border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition-all">
-                    {c.cta}
-                  </button>
-                </div>
-              </div>
+                <summary className="flex justify-between items-center gap-4 list-none">
+                  <span className="font-headline-md text-[18px] md:text-[20px] uppercase text-on-background">
+                    {f.q}
+                  </span>
+                  <span className="material-symbols-outlined text-primary-container transition-transform group-open:rotate-45">
+                    add
+                  </span>
+                </summary>
+                <p className="text-on-background/60 font-body-md mt-4">{f.a}</p>
+              </details>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Membership CTA */}
-      <section className="py-stack-lg bg-surface-container-lowest">
-        <div className="px-6 md:px-margin-desktop max-w-container-max mx-auto">
-          <div className="glass-panel p-10 md:p-20 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none hidden md:block">
-              <span
-                className="material-symbols-outlined text-[400px] absolute -right-20 -top-20 text-primary-container"
-                style={{ fontVariationSettings: "'FILL' 1" }}
-              >
-                shield
-              </span>
-            </div>
-            <div className="max-w-xl relative z-10">
-              <h2 className="font-headline-lg text-headline-lg text-on-background mb-6 uppercase">
-                BECOME AN INITIATE
-              </h2>
-              <p className="font-body-lg text-body-lg text-on-background/60 mb-10">
-                Gain priority access to all Chicago events, exclusive releases, and the private
-                Discord sanctuary. No escape from the rhythm.
-              </p>
-              <div className="flex flex-wrap items-center gap-10">
-                <div>
-                  <p className="font-label-caps text-[10px] text-on-background/40 uppercase tracking-widest mb-2">
-                    Starting from
-                  </p>
-                  <p className="font-headline-md text-headline-md text-primary-container">
-                    $49<span className="text-on-background/40 text-body-md">/mo</span>
-                  </p>
-                </div>
-                <button className="bg-primary-container text-white px-12 py-5 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95 neon-glow">
-                  START MEMBERSHIP
-                </button>
-              </div>
-            </div>
-            <div className="hidden lg:grid grid-cols-2 gap-4 relative z-10">
-              {[
-                { icon: "star", title: "PRIORITY PASS", text: "Skip the queue for every ritual." },
-                { icon: "lock", title: "SECRET SETS", text: "Exclusive member-only locations." },
-                { icon: "token", title: "DIGITAL ASSETS", text: "Limited edition event drops." },
-                { icon: "forum", title: "COMMUNITY", text: "Access to the inner circle." },
-              ].map((p) => (
-                <div key={p.title} className="p-6 border border-white/10 bg-white/5">
-                  <span className="material-symbols-outlined text-primary-container mb-4">
-                    {p.icon}
-                  </span>
-                  <h5 className="font-label-caps text-label-caps mb-2">{p.title}</h5>
-                  <p className="text-on-background/40 text-[12px]">{p.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Social Feed */}
-      <section className="py-stack-lg px-6 md:px-margin-desktop max-w-container-max mx-auto overflow-hidden">
-        <h2 className="font-headline-md text-headline-md text-on-background mb-12 text-center uppercase">
-          @DUNGEONSERIES FLOW
+      {/* ── FOOTER CTA ───────────────────────────────────────────────────── */}
+      <section className="py-stack-lg px-6 md:px-margin-desktop max-w-container-max mx-auto text-center">
+        <h2 className="font-headline-xl text-headline-lg md:text-headline-xl text-on-background uppercase leading-none mb-6">
+          SEE YOU<br />ON THE 9TH.
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-          {socialTiles.map((src, i) => (
-            <div key={i} className="aspect-square glass-panel overflow-hidden group">
-              <img
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale hover:grayscale-0"
-                alt=""
-                src={src}
-              />
-            </div>
-          ))}
-        </div>
+        <p className="text-on-background/60 mb-10">
+          {festival.dateLabel} · {festival.venue}
+        </p>
+        <a
+          href={festival.ticketUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-block bg-primary-container text-white px-16 py-6 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95 neon-glow"
+        >
+          GET TICKETS
+        </a>
       </section>
     </SiteLayout>
   );

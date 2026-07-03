@@ -220,3 +220,8 @@
   box-shadow: 0 0 30px rgba(255, 85, 64, 0.2);
   border-color: rgba(255, 85, 64, 0.5);
 }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}

@@ -57,13 +57,13 @@ const TF = "https://www.ticketfalcon.com/dungeon-series";
 export const events: CalendarEvent[] = [
   {
     id: "festival-2026",
-    date: "2026-10-31",
-    dateLabel: "OCT 31 — NOV 02, 2026",
-    timeLabel: "48 HOURS · DOORS 21:00",
+    date: "2026-08-09",
+    dateLabel: "AUGUST 9, 2026",
+    timeLabel: "GATES 14:00 · MUSIC UNTIL LATE",
     title: "DUNGEON SERIES FESTIVAL",
-    venue: "Undisclosed · West Loop, Chicago",
+    venue: "Chicago, IL",
     blurb:
-      "The flagship. Three floors, forty-eight hours, one descent. Lineup unveiled in waves — each flyer marks a new chamber.",
+      "The flagship. One day, one city, one descent. Lineup unveiled in waves — each flyer marks a new chamber.",
     ticketUrl: `${TF}/festival-2026`,
     featured: true,
     flyers: [
