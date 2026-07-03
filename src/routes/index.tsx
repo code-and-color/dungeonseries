@@ -115,13 +115,53 @@ const FAQS = [
   },
 ];
 
+function Splash({ onEnter }: { onEnter: () => void }) {
+  return (
+    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,85,64,0.25),transparent_65%)] pointer-events-none" />
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none [background-image:repeating-linear-gradient(0deg,#fff_0,#fff_1px,transparent_1px,transparent_3px)]" />
+      <div className="relative z-10 flex flex-col items-center text-center px-6 animate-[fadeIn_0.8s_ease-out]">
+        <img
+          src={`${baseUrl}og-image.png`}
+          alt="Dungeon Series"
+          className="w-40 md:w-56 mb-10 drop-shadow-[0_0_40px_rgba(255,85,64,0.5)]"
+        />
+        <p className="font-label-caps text-label-caps text-primary-container tracking-[0.5em] mb-4">
+          DUNGEON SERIES
+        </p>
+        <h1 className="font-headline-xl text-headline-lg md:text-headline-xl text-on-background uppercase leading-[0.9] mb-6">
+          AUGUST 9<br />CHICAGO
+        </h1>
+        <p className="text-on-background/60 font-body-md mb-12 tracking-widest">
+          8:00 AM — 8:00 PM
+        </p>
+        <button
+          onClick={onEnter}
+          className="bg-primary-container text-white px-16 py-5 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95 neon-glow tracking-[0.4em]"
+        >
+          ENTER
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function HomePage() {
   const festival = events.find((e) => e.featured) ?? events[0];
   const { d, h, m, s } = useCountdown(festival.date);
   const heroFlyer = festival.flyers?.[0];
+  const [splashOpen, setSplashOpen] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return sessionStorage.getItem("ds-splash-seen") !== "1";
+  });
+  const dismissSplash = () => {
+    sessionStorage.setItem("ds-splash-seen", "1");
+    setSplashOpen(false);
+  };
 
   return (
     <SiteLayout>
+      {splashOpen && <Splash onEnter={dismissSplash} />}
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden border-b border-white/5">
         <div className="absolute inset-0 z-0">
