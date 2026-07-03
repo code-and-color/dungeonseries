@@ -1,13 +1,13 @@
 import { Link } from "@tanstack/react-router";
+import { events } from "@/data/events";
 
 const assetBase = import.meta.env.BASE_URL ?? "/";
+const festival = events.find((e) => e.featured) ?? events[0];
 
 const navLinks = [
   { to: "/", label: "HOME" },
   { to: "/events", label: "EVENTS" },
-  { to: "/calendar", label: "CALENDAR" },
   { to: "/vendors", label: "VENDORS" },
-  { to: "/pricing", label: "PRICING" },
   { to: "/contact", label: "CONTACT" },
 ] as const;
 
@@ -41,14 +41,17 @@ export function Header() {
           </div>
         </div>
         <div className="flex items-center gap-6">
-          <Link
-            to="/calendar"
+          <a
+            href={festival.ticketUrl}
+            target="_blank"
+            rel="noreferrer"
             className="bg-primary-container text-white px-8 py-3 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95"
           >
             GET TICKETS
-          </Link>
+          </a>
         </div>
       </nav>
     </header>
   );
 }
+

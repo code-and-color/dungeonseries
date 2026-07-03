@@ -59,7 +59,7 @@ export const events: CalendarEvent[] = [
     id: "festival-2026",
     date: "2026-08-09",
     dateLabel: "AUGUST 9, 2026",
-    timeLabel: "GATES 14:00 · MUSIC UNTIL LATE",
+    timeLabel: "8:00 AM — 8:00 PM",
     title: "DUNGEON SERIES FESTIVAL",
     venue: "Chicago, IL",
     blurb:

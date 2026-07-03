@@ -10,20 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VendorsRouteImport } from './routes/vendors'
-import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as IndexRouteImport } from './routes/index'
 
 const VendorsRoute = VendorsRouteImport.update({
   id: '/vendors',
   path: '/vendors',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PricingRoute = PricingRouteImport.update({
-  id: '/pricing',
-  path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EventsRoute = EventsRouteImport.update({
@@ -36,11 +29,6 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CalendarRoute = CalendarRouteImport.update({
-  id: '/calendar',
-  path: '/calendar',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -49,56 +37,35 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/calendar': typeof CalendarRoute
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
-  '/pricing': typeof PricingRoute
   '/vendors': typeof VendorsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/calendar': typeof CalendarRoute
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
-  '/pricing': typeof PricingRoute
   '/vendors': typeof VendorsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/calendar': typeof CalendarRoute
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
-  '/pricing': typeof PricingRoute
   '/vendors': typeof VendorsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/calendar'
-    | '/contact'
-    | '/events'
-    | '/pricing'
-    | '/vendors'
+  fullPaths: '/' | '/contact' | '/events' | '/vendors'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/calendar' | '/contact' | '/events' | '/pricing' | '/vendors'
-  id:
-    | '__root__'
-    | '/'
-    | '/calendar'
-    | '/contact'
-    | '/events'
-    | '/pricing'
-    | '/vendors'
+  to: '/' | '/contact' | '/events' | '/vendors'
+  id: '__root__' | '/' | '/contact' | '/events' | '/vendors'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CalendarRoute: typeof CalendarRoute
   ContactRoute: typeof ContactRoute
   EventsRoute: typeof EventsRoute
-  PricingRoute: typeof PricingRoute
   VendorsRoute: typeof VendorsRoute
 }
 
@@ -109,13 +76,6 @@ declare module '@tanstack/react-router' {
       path: '/vendors'
       fullPath: '/vendors'
       preLoaderRoute: typeof VendorsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pricing': {
-      id: '/pricing'
-      path: '/pricing'
-      fullPath: '/pricing'
-      preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/events': {
@@ -132,13 +92,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/calendar': {
-      id: '/calendar'
-      path: '/calendar'
-      fullPath: '/calendar'
-      preLoaderRoute: typeof CalendarRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -151,10 +104,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CalendarRoute: CalendarRoute,
   ContactRoute: ContactRoute,
   EventsRoute: EventsRoute,
-  PricingRoute: PricingRoute,
   VendorsRoute: VendorsRoute,
 }
 export const routeTree = rootRouteImport
