@@ -4,6 +4,8 @@
 //     componentTagger (dev-only), VITE_* env injection, @ path alias, React/TanStack dedupe,
 //     error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
+import { promises as fs } from "node:fs";
+import { join } from "pathe";
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 // When deploying to GitHub Pages under a project page (username.github.io/dungeonseries/),
@@ -19,6 +21,20 @@ export default defineConfig({
     // Disable the HMR overlay to avoid blocking the page while debugging CSS issues.
     server: {
       hmr: { overlay: false },
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          entryFileNames: "[name].js",
+        },
+      },
+    },
+  },
+  nitro: {
+    output: {
+      dir: "dist",
+      serverDir: "dist/server",
+      publicDir: "dist/client",
     },
   },
   tanstackStart: {
