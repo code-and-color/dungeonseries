@@ -30,26 +30,7 @@ export default defineConfig({
       },
     },
   },
-  nitro: {
-    preset: STATIC_EXPORT ? "github-pages" : "node-server",
-    // Instructs Nitro not to boot up a conflicting background bundle process
-    // that targets the newly exported HTML pages in Vite 7.
-    experimental: {
-      tasks: false,
-    },
-    ...(!STATIC_EXPORT && {
-      output: {
-        dir: "dist",
-        serverDir: "dist/nitro/server",
-        publicDir: "dist/client",
-      },
-      rollupConfig: {
-        output: {
-          entryFileNames: "server.js",
-        },
-      },
-    }),
-  },
+  // Removed custom 'environments' and custom nested 'nitro' setups to stop type overloading
   tanstackStart: {
     server: { entry: "server" },
     ...(STATIC_EXPORT && {
