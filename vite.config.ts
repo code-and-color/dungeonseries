@@ -30,9 +30,13 @@ export default defineConfig({
       },
     },
   },
-  // REMOVED: environments property to avoid overriding Vite 6 runtime targets during export
   nitro: {
     preset: STATIC_EXPORT ? "github-pages" : "node-server",
+    // Instructs Nitro not to boot up a conflicting background bundle process
+    // that targets the newly exported HTML pages in Vite 7.
+    experimental: {
+      tasks: false,
+    },
     ...(!STATIC_EXPORT && {
       output: {
         dir: "dist",
