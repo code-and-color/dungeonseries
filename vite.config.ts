@@ -30,11 +30,24 @@ export default defineConfig({
       },
     },
   },
+  environments: {
+    ssr: {
+      build: {
+        outDir: "dist/nitro/server",
+      },
+    },
+  },
   nitro: {
+    preset: "node-server",
     output: {
       dir: "dist",
-      serverDir: "dist/server",
+      serverDir: "dist/nitro/server",
       publicDir: "dist/client",
+    },
+    rollupConfig: {
+      output: {
+        entryFileNames: "server.js",
+      },
     },
   },
   tanstackStart: {
