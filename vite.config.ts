@@ -30,25 +30,21 @@ export default defineConfig({
       },
     },
   },
-  environments: {
-    ssr: {
-      build: {
-        outDir: "dist/nitro/server",
-      },
-    },
-  },
+  // REMOVED: environments property to avoid overriding Vite 6 runtime targets during export
   nitro: {
-    preset: "node-server",
-    output: {
-      dir: "dist",
-      serverDir: "dist/nitro/server",
-      publicDir: "dist/client",
-    },
-    rollupConfig: {
+    preset: STATIC_EXPORT ? "github-pages" : "node-server",
+    ...(!STATIC_EXPORT && {
       output: {
-        entryFileNames: "server.js",
+        dir: "dist",
+        serverDir: "dist/nitro/server",
+        publicDir: "dist/client",
       },
-    },
+      rollupConfig: {
+        output: {
+          entryFileNames: "server.js",
+        },
+      },
+    }),
   },
   tanstackStart: {
     server: { entry: "server" },
