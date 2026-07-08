@@ -65,8 +65,8 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
 
 // ─── Placeholder lineup (edit freely) ───────────────────────────────────────
 const HEADLINERS = [
-  "TBA HEADLINER",
-  "TBA HEADLINER",
+  "ZORA MURPHY",
+  "DWAYNE POWELL",
   "TBA HEADLINER",
   "TBA HEADLINER",
 ];
@@ -184,7 +184,7 @@ function HomePage() {
             THE DUNGEON SERIES FESTIVAL
           </p>
           <h1 className="font-headline-xl text-headline-lg md:text-headline-xl text-on-background leading-[0.9] uppercase mb-8">
-            ONE DAY.<br />ONE DESCENT.
+            ONE DAY.<br />ONE DESTINATION.<br />CHICAGO.
           </h1>
           <p className="font-body-lg text-on-background/70 max-w-xl mx-auto mb-10">
             {festival.dateLabel} · {festival.venue}
