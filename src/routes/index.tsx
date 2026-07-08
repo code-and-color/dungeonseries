@@ -334,7 +334,7 @@ function HomePage() {
                 THE FLAGSHIP EVENT
               </p>
               <h3 className="font-headline-lg text-headline-md md:text-headline-lg text-on-background uppercase mb-6">
-                A ONE-DAY RITUAL IN CHICAGO
+                ONE DAY IN CHICAGO
               </h3>
               <p className="text-on-background/60 font-body-lg mb-8">
                 {festival.blurb}
