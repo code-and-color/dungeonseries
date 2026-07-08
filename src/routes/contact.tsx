@@ -46,7 +46,7 @@ function ContactPage() {
               <span className="font-label-caps text-label-caps text-primary mb-4 block">
                 BOOKINGS &amp; PARTNERSHIPS
               </span>
-              <h3 className="font-headline-md text-headline-md mb-4 uppercase">GLOBAL OPS</h3>
+              <h3 className="font-headline-md text-headline-md mb-4 uppercase">Management</h3>
               <p className="font-body-md text-body-md text-on-surface-variant mb-6">
                 Connect with our management team for artist bookings, brand collaborations, and
                 large-scale event logistics.
