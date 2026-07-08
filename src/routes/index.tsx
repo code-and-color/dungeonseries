@@ -63,22 +63,24 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
   );
 }
 
-// ─── Placeholder lineup (edit freely) ───────────────────────────────────────
-const HEADLINERS = [
-  "ZORA MURPHY",
-  "DWAYNE POWELL",
-  "TBA HEADLINER",
-  "TBA HEADLINER",
+// ─── Lineup (maps to public/events/*.png) ───────────────────────────────────
+type Artist = { name: string; image: string; headliner?: boolean };
+
+const HEADLINERS: Artist[] = [
+  { name: "ZORA MURPHY", image: "Dungeon Series Festival - CTRLZORA.png", headliner: true },
+  { name: "DWAYNE POWELL", image: "Dungeon Series Festival - Powell.png", headliner: true },
 ];
-const LINEUP = [
-  "ARTIST ONE",
-  "ARTIST TWO",
-  "ARTIST THREE",
-  "ARTIST FOUR",
-  "ARTIST FIVE",
-  "ARTIST SIX",
-  "ARTIST SEVEN",
-  "ARTIST EIGHT",
+
+const SUPPORT: Artist[] = [
+  { name: "BRACKEN", image: "Dungeon Series Festival - Bracken.png" },
+  { name: "BREATHLEZZ", image: "Dungeon Series Festival - Breathlezz.png" },
+  { name: "COSEY", image: "Dungeon Series Festival - Cosey.png" },
+  { name: "HARDISON", image: "Dungeon Series Festival - Hardison.png" },
+  { name: "HUNT", image: "Dungeon Series Festival - Hunt (1).png" },
+  { name: "JAMIE 326", image: "Dungeon Series Festival - Jamie 326.png" },
+  { name: "KOKO", image: "Dungeon Series Festival - Koko (1).png" },
+  { name: "MAESTRO", image: "Dungeon Series Festival - Maestro.png" },
+  { name: "MAXWELL", image: "Dungeon Series Festival - Maxwell.png" },
 ];
 
 const STATS = [
@@ -184,7 +186,7 @@ function HomePage() {
             THE DUNGEON SERIES FESTIVAL
           </p>
           <h1 className="font-headline-xl text-headline-lg md:text-headline-xl text-on-background leading-[0.9] uppercase mb-8">
-            ONE DAY.<br />ONE DESTINATION.<br />CHICAGO.
+            THE DESTINATION<br />IN CHICAGO.
           </h1>
           <p className="font-body-lg text-on-background/70 max-w-xl mx-auto mb-10">
             {festival.dateLabel} · {festival.venue}
@@ -262,14 +264,25 @@ function HomePage() {
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-            {HEADLINERS.map((name, i) => (
+            {HEADLINERS.map((artist) => (
               <div
-                key={i}
-                className="aspect-square glass-panel flex items-center justify-center p-4 text-center hover:border-primary-container/50 transition-colors"
+                key={artist.name}
+                className="group relative aspect-[3/4] overflow-hidden glass-panel border-primary-container/30 hover:border-primary-container transition-colors"
               >
-                <span className="font-headline-md text-[20px] uppercase text-on-background">
-                  {name}
-                </span>
+                <img
+                  src={resolveImage(artist.image)}
+                  alt={artist.name}
+                  className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
+                  <span className="font-label-caps text-[10px] tracking-[0.25em] text-primary-container mb-1 block">
+                    HEADLINER
+                  </span>
+                  <span className="font-headline-md text-[18px] uppercase text-on-background">
+                    {artist.name}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
@@ -278,18 +291,28 @@ function HomePage() {
             <p className="font-label-caps text-[10px] tracking-[0.3em] text-on-background/40 mb-6 text-center">
               WITH SUPPORT FROM
             </p>
-            <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
-              {LINEUP.map((name) => (
-                <span
-                  key={name}
-                  className="font-headline-md text-[18px] md:text-[22px] uppercase text-on-background/70 hover:text-primary-container transition-colors"
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              {SUPPORT.map((artist) => (
+                <div
+                  key={artist.name}
+                  className="group relative aspect-[3/4] overflow-hidden glass-panel hover:border-primary-container/50 transition-colors"
                 >
-                  {name}
-                </span>
+                  <img
+                    src={resolveImage(artist.image)}
+                    alt={artist.name}
+                    className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3 text-center">
+                    <span className="font-headline-md text-[14px] md:text-[16px] uppercase text-on-background">
+                      {artist.name}
+                    </span>
+                  </div>
+                </div>
               ))}
             </div>
             <p className="text-center text-on-background/40 text-body-md mt-8 italic">
-              Full lineup announced in waves. Follow @dungeonseries for drops.
+              More artists announced in waves. Follow @dungeonseries for drops.
             </p>
           </div>
         </div>
