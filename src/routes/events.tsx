@@ -3,7 +3,6 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { events, resolveImage, VENDOR_PACKET_URL } from "@/data/events";
 
 const festival = events.find((e) => e.featured) ?? events[0];
-const otherEvents = events.filter((e) => e.id !== festival.id).sort((a, b) => a.date.localeCompare(b.date));
 
 const EVENTS_TITLE = "Dungeon Series Festival · August 9, 2026 · Chicago";
 const EVENTS_DESC =
