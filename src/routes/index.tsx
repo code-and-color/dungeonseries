@@ -363,6 +363,41 @@ function HomePage() {
         </section>
       )}
 
+      {/* ── VIDEO ────────────────────────────────────────────────────────── */}
+      <section className="py-stack-lg px-6 md:px-margin-desktop max-w-container-max mx-auto">
+        <div className="text-center mb-10">
+          <p className="font-label-caps text-label-caps text-primary-container tracking-[0.3em] mb-3">
+            INSIDE THE DUNGEON
+          </p>
+          <h2 className="font-headline-lg text-headline-md md:text-headline-lg text-on-background uppercase">
+            A LOOK AT THE FLOOR
+          </h2>
+        </div>
+        <div className="glass-panel overflow-hidden aspect-video max-w-4xl mx-auto">
+          <video
+            src={festivalClip.url}
+            className="w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            controls
+          />
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6 max-w-4xl mx-auto">
+          {HEADLINERS.concat(SUPPORT).slice(0, 4).map((a) => (
+            <div key={a.name} className="aspect-square overflow-hidden glass-panel">
+              <img
+                src={resolveImage(a.image)}
+                alt={a.name}
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
+
       {/* ── FAQ ──────────────────────────────────────────────────────────── */}
       <section className="py-stack-lg bg-surface-container-lowest border-y border-white/5">
         <div className="px-6 md:px-margin-desktop max-w-container-max mx-auto max-w-3xl">
