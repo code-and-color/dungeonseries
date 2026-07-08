@@ -159,7 +159,7 @@ function EventsPage() {
               MORE EVENTS
             </h3>
             <span className="font-label-caps text-[10px] text-secondary opacity-50">
-              UPCOMING RITUALS
+              COMING SOON
             </span>
           </div>
           <div className="grid md:grid-cols-2 gap-stack-md">
