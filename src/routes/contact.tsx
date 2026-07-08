@@ -32,10 +32,10 @@ function ContactPage() {
       <div className="max-w-container-max mx-auto px-6 md:px-margin-desktop pt-12 pb-stack-lg">
         {/* Hero */}
         <div className="mb-stack-lg border-l-4 border-primary-container pl-8">
-          <h1 className="font-headline-xl text-headline-xl uppercase">Initiate Transmission</h1>
+          <h1 className="font-headline-xl text-headline-xl uppercase">Get in Touch</h1>
           <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mt-4">
-            Sector 07 is waiting. Whether it's a booking inquiry, partnership proposal, or a
-            general intelligence report, our Chicago agents will respond within 24 standard cycles.
+            Booking inquiries, partnerships, press — send us a message and our team in Chicago
+            will get back to you within 24 hours.
           </p>
         </div>
 
@@ -46,7 +46,7 @@ function ContactPage() {
               <span className="font-label-caps text-label-caps text-primary mb-4 block">
                 BOOKINGS &amp; PARTNERSHIPS
               </span>
-              <h3 className="font-headline-md text-headline-md mb-4 uppercase">GLOBAL OPS</h3>
+              <h3 className="font-headline-md text-headline-md mb-4 uppercase">Management</h3>
               <p className="font-body-md text-body-md text-on-surface-variant mb-6">
                 Connect with our management team for artist bookings, brand collaborations, and
                 large-scale event logistics.
@@ -70,13 +70,13 @@ function ContactPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60" />
                 <div className="absolute bottom-4 left-4">
                   <span className="bg-primary-container text-on-primary-container font-label-caps text-[10px] px-2 py-1">
-                    SECTOR 07 HQ
+                    CHICAGO HQ
                   </span>
                 </div>
               </div>
               <div className="p-8">
                 <h3 className="font-headline-md text-headline-md mb-2 uppercase">
-                  CHICAGO CENTER
+                  Chicago Office
                 </h3>
                 <address className="not-italic font-body-md text-body-md text-on-surface-variant flex flex-col gap-1">
                   <span>1247 W Fulton Market</span>
@@ -85,7 +85,7 @@ function ContactPage() {
                 <div className="mt-6 flex gap-4">
                   <div className="flex flex-col">
                     <span className="font-label-caps text-[10px] text-primary">
-                      COMMUNICATIONS
+                      PHONE
                     </span>
                     <span className="font-body-md text-body-md">+1 (312) 555-0107</span>
                   </div>
@@ -101,7 +101,7 @@ function ContactPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="flex flex-col gap-2">
                     <label className="font-label-caps text-label-caps text-on-surface-variant">
-                      AGENT NAME
+                      NAME
                     </label>
                     <input
                       type="text"
@@ -111,7 +111,7 @@ function ContactPage() {
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="font-label-caps text-label-caps text-on-surface-variant">
-                      COMM CHANNEL
+                      EMAIL
                     </label>
                     <input
                       type="email"
@@ -122,7 +122,7 @@ function ContactPage() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-label-caps text-label-caps text-on-surface-variant">
-                    TRANSMISSION TYPE
+                    INQUIRY TYPE
                   </label>
                   <select className="bg-black border-0 border-b border-white/20 focus:ring-0 focus:border-primary-container focus:outline-none text-white font-body-md px-0 py-3 transition-colors appearance-none">
                     <option>GENERAL INQUIRY</option>
@@ -133,7 +133,7 @@ function ContactPage() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-label-caps text-label-caps text-on-surface-variant">
-                    DATA PAYLOAD
+                    MESSAGE
                   </label>
                   <textarea
                     rows={6}
@@ -146,7 +146,7 @@ function ContactPage() {
                     type="submit"
                     className="w-full md:w-auto bg-primary-container text-on-primary-container px-12 py-5 font-label-caps text-label-caps neon-glow transition-all flex items-center justify-center gap-3 active:scale-95"
                   >
-                    SEND TRANSMISSION
+                    SEND MESSAGE
                     <span className="material-symbols-outlined">send</span>
                   </button>
                 </div>
