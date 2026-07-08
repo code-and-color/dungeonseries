@@ -67,22 +67,61 @@ export const events: CalendarEvent[] = [
     ticketUrl: `${TF}/festival-2026`,
     featured: true,
     flyers: [
-      // Drop files into public/events/ and reference by filename:
-      //   { src: "festival-phase-1.jpg", alt: "Phase I lineup", label: "PHASE I · HEADLINERS" },
+      // Headliners first, then support. Files live in public/events/.
       {
-        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCDj5Nig7Mr03MBoj7hcrtXUYyrseZkf3kz6zr2ZrKB9n7UpjMqAzkV8UslLXGT5oJr9q__cXtjNlRF_S0YTzejGC1DWzji5UbhuVQjfnh76U6NN20YLPHyrjwAdvx6lOjQVXCKECsekRj6Xv2c3buzqqIfjE9cfwUxF5ODrwrMOQgiWLR1QGg-HVKB-1j7ivRSWeo04tYwCwEchheiiUSSItRLbx8_59VohHI1I_DQxreXr_haBNndHk1PJnGUuwVP9RVxri7yIp3T",
-        alt: "Dungeon Series Festival — Phase I flyer",
-        label: "PHASE I · HEADLINERS",
+        src: "Dungeon Series Festival - CTRLZORA.png",
+        alt: "Zora Murphy — Dungeon Series Festival performer",
+        label: "ZORA MURPHY",
       },
       {
-        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBDq497O9De1qH7b9_PIxu5puyyrZayFXGrYhEB0foE90jYbir_a5uyvZZOjil9oLqcrWPdMPHpPZ4azf9sQCpgL56XjlGeyUYotJfa8MqU1JNt32d4eLIQxNz65aDE7ByAyi2xi6rmzd4PpfhgsR0QVVuQqajLeoxWFv-oeBnXuY_k29EjC0yobsWG8vmLR3XgOVGilLLZiJJv1W_iokfshAk0orYE_c8x-CT2rMSxqzeMD3-ntK6nm8bbZ7rz3d3znlIPBRh7i4ad",
-        alt: "Dungeon Series Festival — Phase II flyer",
-        label: "PHASE II · SUPPORT",
+        src: "Dungeon Series Festival - Powell.png",
+        alt: "Dwayne Powell — Dungeon Series Festival performer",
+        label: "DWAYNE POWELL",
       },
       {
-        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCy6skl3fY8aRgKukVJChz0EykYHfdwZrWGZ8UjDfLdtV_EAAIthHg8JSGeOujdx7uJpRVLZhUwuB0ELQZIQoVQTNlsLT-krZ7Kmjlk9x-ZMXwXMJq9IFFPCBaRe5lxNHn_IDp3wgm1OHh_sfu4DTZWd7YJBB75Mw8_avsek1khaGZjAwXsPHSpBxhCGGgxaNVQmB9uNKjZJ64_vMgJxzCDn6PWwNRDFnVgcce90uEbaqdKx8yvJcpamPLdjiJqhKLxofCd1CkQER07",
-        alt: "Dungeon Series Festival — Phase III flyer",
-        label: "PHASE III · AFTERMATH",
+        src: "Dungeon Series Festival - Bracken.png",
+        alt: "Bracken — Dungeon Series Festival performer",
+        label: "BRACKEN",
+      },
+      {
+        src: "Dungeon Series Festival - Breathlezz.png",
+        alt: "Breathlezz — Dungeon Series Festival performer",
+        label: "BREATHLEZZ",
+      },
+      {
+        src: "Dungeon Series Festival - Cosey.png",
+        alt: "Cosey — Dungeon Series Festival performer",
+        label: "COSEY",
+      },
+      {
+        src: "Dungeon Series Festival - Hardison.png",
+        alt: "Hardison — Dungeon Series Festival performer",
+        label: "HARDISON",
+      },
+      {
+        src: "Dungeon Series Festival - Hunt (1).png",
+        alt: "Hunt — Dungeon Series Festival performer",
+        label: "HUNT",
+      },
+      {
+        src: "Dungeon Series Festival - Jamie 326.png",
+        alt: "Jamie 326 — Dungeon Series Festival performer",
+        label: "JAMIE 326",
+      },
+      {
+        src: "Dungeon Series Festival - Koko (1).png",
+        alt: "Koko — Dungeon Series Festival performer",
+        label: "KOKO",
+      },
+      {
+        src: "Dungeon Series Festival - Maestro.png",
+        alt: "Maestro — Dungeon Series Festival performer",
+        label: "MAESTRO",
+      },
+      {
+        src: "Dungeon Series Festival - Maxwell.png",
+        alt: "Maxwell — Dungeon Series Festival performer",
+        label: "MAXWELL",
       },
     ],
   },
