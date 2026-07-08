@@ -7,7 +7,7 @@ const baseUrl = import.meta.env.BASE_URL ?? "/";
 
 const HOME_TITLE = "Dungeon Series Festival · August 9, 2026 · Chicago";
 const HOME_DESC =
-  "The Dungeon Series Festival returns August 9, 2026 in Chicago. One day. One descent. Get tickets, view the lineup, and become a vendor.";
+  "The Dungeon Series Festival returns August 9, 2026 in Chicago. One day. One destination. Get tickets, view the lineup, and become a vendor.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
