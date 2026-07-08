@@ -154,52 +154,45 @@ function EventsPage() {
         )}
 
         {/* ── MORE EVENTS ─────────────────────────────────────────────────── */}
-        {otherEvents.length > 0 && (
-          <section>
-            <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-stack-md">
-              <h3 className="font-label-caps text-label-caps text-primary tracking-[0.2em]">
-                MORE EVENTS
-              </h3>
-              <span className="font-label-caps text-[10px] text-secondary opacity-50">
-                UPCOMING RITUALS
-              </span>
-            </div>
-            <div className="grid md:grid-cols-2 gap-stack-md">
-              {otherEvents.map((event) => (
-                <div
-                  key={event.id}
-                  className="glass-card p-stack-md flex flex-col justify-between group cursor-pointer hover:border-primary-container transition-all"
-                >
-                  <div>
-                    <span className="font-label-caps text-[10px] text-primary mb-2 block">
-                      {event.dateLabel}
-                    </span>
-                    <h4 className="font-headline-md text-2xl font-bold uppercase group-hover:text-primary-container transition-colors mb-2">
-                      {event.title}
-                    </h4>
-                    <p className="font-body-md text-secondary mb-4">{event.venue}</p>
-                    <p className="font-body-md text-sm text-on-background/60 line-clamp-2">
-                      {event.blurb}
-                    </p>
-                  </div>
-                  <div className="mt-6 flex items-center justify-between">
-                    <span className="font-label-caps text-[10px] text-secondary">
-                      {event.timeLabel}
-                    </span>
-                    <a
-                      href={event.ticketUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="border border-white/20 text-white px-6 py-2 font-label-caps text-[10px] hover:bg-white/5 transition-all"
-                    >
-                      TICKETS
-                    </a>
-                  </div>
+        <section>
+          <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-stack-md">
+            <h3 className="font-label-caps text-label-caps text-primary tracking-[0.2em]">
+              MORE EVENTS
+            </h3>
+            <span className="font-label-caps text-[10px] text-secondary opacity-50">
+              UPCOMING RITUALS
+            </span>
+          </div>
+          <div className="grid md:grid-cols-2 gap-stack-md">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div
+                key={i}
+                className="glass-card p-stack-md flex flex-col justify-between min-h-[220px]"
+              >
+                <div>
+                  <span className="font-label-caps text-[10px] text-primary mb-2 block">
+                    TBA
+                  </span>
+                  <h4 className="font-headline-md text-2xl font-bold uppercase text-on-background mb-2">
+                    TBD
+                  </h4>
+                  <p className="font-body-md text-secondary mb-4">Location TBA</p>
+                  <p className="font-body-md text-sm text-on-background/60 line-clamp-2">
+                    More details coming soon.
+                  </p>
                 </div>
-              ))}
-            </div>
-          </section>
-        )}
+                <div className="mt-6 flex items-center justify-between">
+                  <span className="font-label-caps text-[10px] text-secondary">
+                    TBA
+                  </span>
+                  <span className="border border-white/20 text-white/40 px-6 py-2 font-label-caps text-[10px]">
+                    TICKETS
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </SiteLayout>
   );
