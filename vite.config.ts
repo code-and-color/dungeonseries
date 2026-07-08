@@ -12,13 +12,9 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 // set BASE_PATH=/dungeonseries/ at build time. Lovable preview leaves it unset → "/".
 const basePath = process.env.BASE_PATH ?? "/";
 
-// Static export for GitHub Pages: prerender every page to plain HTML.
-const STATIC_EXPORT = process.env.STATIC_EXPORT === "true";
-
 export default defineConfig({
   vite: {
     base: basePath,
-    // Disable the HMR overlay to avoid blocking the page while debugging CSS issues.
     server: {
       hmr: { overlay: false },
     },
@@ -30,21 +26,8 @@ export default defineConfig({
       },
     },
   },
-  // Removed custom 'environments' and custom nested 'nitro' setups to stop type overloading
   tanstackStart: {
     server: { entry: "server" },
-    ...(STATIC_EXPORT && {
-      prerender: {
-        enabled: true,
-        crawlLinks: true,
-        routes: ["/", "/events", "/pricing", "/contact"],
-      },
-      pages: [
-        { path: "/" },
-        { path: "/events" },
-        { path: "/pricing" },
-        { path: "/contact" },
-      ],
-    }),
   },
 });
+
