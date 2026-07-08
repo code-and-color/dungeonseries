@@ -1,23 +1,21 @@
 // Generates dist/client/index.html for SPA hosting (GitHub Pages).
-// Runs after `vite build`, picks up the hashed CSS asset, and points the
-// client entry (dist/client/index.js) as a module script. Uses BASE_PATH
-// so asset URLs are correct under project pages (e.g. /dungeonseries/).
 import { readdirSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
 const base = (process.env.BASE_PATH ?? "/").replace(/\/+$/, "") + "/";
-const candidates = ["dist/client", ".output/public"];
-const clientDir = candidates.find((d) => existsSync(d));
+const clientDir = ["dist/client", ".output/public"].find((d) => existsSync(d));
 if (!clientDir) {
-  console.error(`Missing client build dir. Tried: ${candidates.join(", ")}`);
+  console.error("Missing client build dir");
   process.exit(1);
 }
 
-
 const assets = readdirSync(join(clientDir, "assets"));
-const cssFile = assets.find((f) => f.startsWith("styles") && f.endsWith(".css"));
-if (!cssFile) {
-  console.error("Could not find styles-*.css in dist/client/assets");
+const cssFile = assets.find((f) => /\.css$/.test(f));
+const appJs = existsSync(join(clientDir, "app.js"))
+  ? "app.js"
+  : assets.find((f) => f.startsWith("app") && f.endsWith(".js"));
+if (!cssFile || !appJs) {
+  console.error("Missing css or app entry", { cssFile, appJs });
   process.exit(1);
 }
 
@@ -38,10 +36,10 @@ const html = `<!doctype html>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="${base}index.js"></script>
+    <script type="module" src="${base}${appJs}"></script>
   </body>
 </html>
 `;
 
 writeFileSync(join(clientDir, "index.html"), html);
-console.log(`Wrote ${clientDir}/index.html (base=${base}, css=${cssFile})`);
+console.log(`Wrote ${clientDir}/index.html (base=${base}, css=${cssFile}, entry=${appJs})`);
