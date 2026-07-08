@@ -6,12 +6,13 @@ import { readdirSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
 const base = (process.env.BASE_PATH ?? "/").replace(/\/+$/, "") + "/";
-const clientDir = "dist/client";
-
-if (!existsSync(clientDir)) {
-  console.error(`Missing ${clientDir}. Run \`vite build\` first.`);
+const candidates = ["dist/client", ".output/public"];
+const clientDir = candidates.find((d) => existsSync(d));
+if (!clientDir) {
+  console.error(`Missing client build dir. Tried: ${candidates.join(", ")}`);
   process.exit(1);
 }
+
 
 const assets = readdirSync(join(clientDir, "assets"));
 const cssFile = assets.find((f) => f.startsWith("styles") && f.endsWith(".css"));

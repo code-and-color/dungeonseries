@@ -39,13 +39,17 @@ jobs:
       - name: Locate static output
         id: out
         run: |
-          dir=dist/client
-          if [ ! -f "$dir/index.html" ]; then
-            echo "Expected $dir/index.html to exist after build" >&2
-            ls -la "$dir" || true
-            exit 1
-          fi
-          echo "dir=$dir" >> "$GITHUB_OUTPUT"
+          for dir in dist/client .output/public; do
+            if [ -f "$dir/index.html" ]; then
+              echo "dir=$dir" >> "$GITHUB_OUTPUT"
+              echo "Using $dir"
+              exit 0
+            fi
+          done
+          echo "No index.html found in dist/client or .output/public" >&2
+          ls -la dist/client .output/public 2>/dev/null || true
+          exit 1
+
 
 
       - name: Add SPA fallback (404.html) and .nojekyll
