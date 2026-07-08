@@ -1,18 +1,25 @@
-// @lovable.dev/vite-tanstack-config already includes tanstackStart, viteReact,
-// tailwindcss, tsConfigPaths, nitro, componentTagger, and error logger plugins.
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tsconfigPaths from "vite-tsconfig-paths";
+import tailwindcss from "@tailwindcss/vite";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
 
 const basePath = process.env.BASE_PATH ?? "/";
 
 export default defineConfig({
-  vite: {
-    base: basePath,
-    server: { hmr: { overlay: false } },
-    build: {
-      rollupOptions: { output: { entryFileNames: "[name].js" } },
-    },
+  base: basePath,
+  plugins: [
+    tanstackRouter({ target: "react", autoCodeSplitting: true }),
+    react(),
+    tsconfigPaths(),
+    tailwindcss(),
+  ],
+  server: {
+    host: "::",
+    port: 8080,
+    hmr: { overlay: false },
   },
-  tanstackStart: {
-    server: { entry: "server" },
+  build: {
+    outDir: "dist",
   },
 });

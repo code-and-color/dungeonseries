@@ -5,15 +5,12 @@ import {
   createRootRouteWithContext,
   useRouter,
   HeadContent,
-  Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect } from "react";
 
-import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 const baseUrl = import.meta.env.BASE_URL ?? "/";
-
 
 function NotFoundComponent() {
   return (
@@ -78,80 +75,25 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Dungeon Series · Chicago" },
-      { name: "description", content: "Chicago's underground sanctuary for high-fidelity sound and exclusive nocturnal events." },
-      { name: "author", content: "Dungeon Series" },
-      { property: "og:site_name", content: "Dungeon Series" },
-      { property: "og:type", content: "website" },
-      { property: "og:locale", content: "en_US" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@dungeonseries" },
-    ],
-    links: [
-      { rel: "icon", type: "image/png", href: `${baseUrl}favicon.png` },
-      { rel: "apple-touch-icon", href: `${baseUrl}favicon.png` },
       {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800&family=Space+Grotesk:wght@600&family=Be+Vietnam+Pro:wght@400;700&display=swap",
-      },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap",
-      },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "Dungeon Series",
-          description:
-            "Chicago's underground sanctuary for high-fidelity sound and exclusive nocturnal events.",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "1247 W Fulton Market",
-            addressLocality: "Chicago",
-            addressRegion: "IL",
-            addressCountry: "US",
-          },
-          logo: `${baseUrl}og-image.png`,
-        }),
+        name: "description",
+        content:
+          "Chicago's underground sanctuary for high-fidelity sound and exclusive nocturnal events.",
       },
     ],
   }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
-
-function RootShell({ children }: { children: ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <HeadContent />
       <Outlet />
     </QueryClientProvider>
   );
