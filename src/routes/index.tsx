@@ -2,12 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { events, VENDOR_PACKET_URL, resolveImage } from "@/data/events";
+import festivalClip from "@/assets/festival-clip.mp4.asset.json";
 
 const baseUrl = import.meta.env.BASE_URL ?? "/";
 
 const HOME_TITLE = "Dungeon Series Festival · August 9, 2026 · Chicago";
 const HOME_DESC =
-  "The Dungeon Series Festival returns August 9, 2026 in Chicago. One day. One descent. Get tickets, view the lineup, and become a vendor.";
+  "The Dungeon Series Festival returns August 9, 2026 in Chicago. One day. One destination. Get tickets, view the lineup, and become a vendor.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -334,7 +335,7 @@ function HomePage() {
                 THE FLAGSHIP EVENT
               </p>
               <h3 className="font-headline-lg text-headline-md md:text-headline-lg text-on-background uppercase mb-6">
-                A ONE-DAY RITUAL IN CHICAGO
+                ONE DAY IN CHICAGO
               </h3>
               <p className="text-on-background/60 font-body-lg mb-8">
                 {festival.blurb}
@@ -361,6 +362,41 @@ function HomePage() {
           </div>
         </section>
       )}
+
+      {/* ── VIDEO ────────────────────────────────────────────────────────── */}
+      <section className="py-stack-lg px-6 md:px-margin-desktop max-w-container-max mx-auto">
+        <div className="text-center mb-10">
+          <p className="font-label-caps text-label-caps text-primary-container tracking-[0.3em] mb-3">
+            INSIDE THE DUNGEON
+          </p>
+          <h2 className="font-headline-lg text-headline-md md:text-headline-lg text-on-background uppercase">
+            A LOOK AT THE FLOOR
+          </h2>
+        </div>
+        <div className="glass-panel overflow-hidden aspect-video max-w-4xl mx-auto">
+          <video
+            src={festivalClip.url}
+            className="w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            controls
+          />
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6 max-w-4xl mx-auto">
+          {HEADLINERS.concat(SUPPORT).slice(0, 4).map((a) => (
+            <div key={a.name} className="aspect-square overflow-hidden glass-panel">
+              <img
+                src={resolveImage(a.image)}
+                alt={a.name}
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
 
       {/* ── FAQ ──────────────────────────────────────────────────────────── */}
       <section className="py-stack-lg bg-surface-container-lowest border-y border-white/5">

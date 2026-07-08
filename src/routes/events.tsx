@@ -6,7 +6,7 @@ const festival = events.find((e) => e.featured) ?? events[0];
 
 const EVENTS_TITLE = "Dungeon Series Festival · August 9, 2026 · Chicago";
 const EVENTS_DESC =
-  "The Dungeon Series Festival returns August 9, 2026 in Chicago. One day. One descent. Get tickets, view the lineup, and join the ritual.";
+  "The Dungeon Series Festival returns August 9, 2026 in Chicago. One day. One destination. Get tickets, view the lineup, and join us.";
 
 export const Route = createFileRoute("/events")({
   head: () => ({
@@ -159,7 +159,7 @@ function EventsPage() {
               MORE EVENTS
             </h3>
             <span className="font-label-caps text-[10px] text-secondary opacity-50">
-              UPCOMING RITUALS
+              COMING SOON
             </span>
           </div>
           <div className="grid md:grid-cols-2 gap-stack-md">
