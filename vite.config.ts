@@ -1,6 +1,6 @@
 // @lovable.dev/vite-tanstack-config already includes tanstackStart, viteReact,
 // tailwindcss, tsConfigPaths, nitro, componentTagger, and error logger plugins.
-import { existsSync, copyFileSync } from "node:fs";
+import { existsSync, copyFileSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "pathe";
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
