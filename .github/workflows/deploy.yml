@@ -19,47 +19,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: "22.12.0" # Wrapped in quotes to prevent YAML parsing errors
+          node-version: "22.12.0"
           cache: "npm"
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build static site
+      - run: npm install
+      - name: Build
         env:
           BASE_PATH: /dungeonseries/
+        run: npm run build
+      - name: SPA fallback + .nojekyll
         run: |
-          npm run build
-          BASE_PATH=/dungeonseries/ node scripts/generate-spa-index.js
-
-      - name: Locate static output
-        id: out
-        run: |
-          for dir in dist/client .output/public; do
-            if [ -f "$dir/index.html" ]; then
-              echo "dir=$dir" >> "$GITHUB_OUTPUT"
-              echo "Using $dir"
-              exit 0
-            fi
-          done
-          echo "No index.html found in dist/client or .output/public" >&2
-          ls -la dist/client .output/public 2>/dev/null || true
-          exit 1
-
-
-
-      - name: Add SPA fallback (404.html) and .nojekyll
-        run: |
-          cp "${{ steps.out.outputs.dir }}/index.html" "${{ steps.out.outputs.dir }}/404.html"
-          touch "${{ steps.out.outputs.dir }}/.nojekyll"
-
+          cp dist/index.html dist/404.html
+          touch dist/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ steps.out.outputs.dir }}
+          path: dist
 
   deploy:
     needs: build
