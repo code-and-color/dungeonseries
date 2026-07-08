@@ -32,10 +32,10 @@ function ContactPage() {
       <div className="max-w-container-max mx-auto px-6 md:px-margin-desktop pt-12 pb-stack-lg">
         {/* Hero */}
         <div className="mb-stack-lg border-l-4 border-primary-container pl-8">
-          <h1 className="font-headline-xl text-headline-xl uppercase">Initiate Transmission</h1>
+          <h1 className="font-headline-xl text-headline-xl uppercase">Get in Touch</h1>
           <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mt-4">
-            Sector 07 is waiting. Whether it's a booking inquiry, partnership proposal, or a
-            general intelligence report, our Chicago agents will respond within 24 standard cycles.
+            Booking inquiries, partnerships, press — send us a message and our team in Chicago
+            will get back to you within 24 hours.
           </p>
         </div>
 
