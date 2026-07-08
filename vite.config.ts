@@ -24,7 +24,7 @@ function copyServerEntryPlugin() {
       // default export so `fetch(req)` (no env) gets a stub ASSETS binding.
       code = code.replace(
         /export\s*{([^}]*)}\s*;?\s*$/,
-        (match, inner) => {
+        (match: string, inner: string) => {
           const parts = inner.split(",").map((p: string) => p.trim()).filter(Boolean);
           const kept: string[] = [];
           let originalDefault: string | null = null;
