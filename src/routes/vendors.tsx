@@ -35,14 +35,14 @@ function VendorsPage() {
             FESTIVAL · VENDORS
           </span>
           <h1 className="font-headline-xl text-headline-xl text-on-background uppercase mt-3">
-            VEND THE
+            VEND AT THE
             <br />
             <span className="text-primary-container">DUNGEON</span>
           </h1>
           <p className="font-body-lg text-body-lg text-secondary max-w-2xl mt-4">
-            Food, apparel, art, and ritual goods — we curate a small market floor at the Dungeon
-            Series Festival. Download the packet for booth tiers, square footage, load-in windows,
-            and how to apply.
+            Join the market floor at the Dungeon Series Festival. We curate a small mix of food,
+            apparel, art, and ritual goods. Download the vendor packet for booth tiers, square
+            footage, load-in windows, and application details.
           </p>
         </section>
 
@@ -74,9 +74,9 @@ function VendorsPage() {
             </h2>
           </div>
           <p className="font-body-md text-secondary max-w-2xl">
-            Email <span className="text-primary">vendors@dungeonseries.com</span> with your packet,
-            menu / product list, and any electrical or refrigeration needs. Applications are
-            reviewed on a rolling basis until the floor is full.
+            Email <span className="text-primary">tyfharvey2@gmail.com</span> with your packet, menu
+            / product list, and any electrical or refrigeration needs. Applications are reviewed on
+            a rolling basis until the floor is full.
           </p>
         </section>
       </div>
