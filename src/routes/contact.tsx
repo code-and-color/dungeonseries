@@ -101,7 +101,7 @@ function ContactPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="flex flex-col gap-2">
                     <label className="font-label-caps text-label-caps text-on-surface-variant">
-                      AGENT NAME
+                      NAME
                     </label>
                     <input
                       type="text"
@@ -111,7 +111,7 @@ function ContactPage() {
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="font-label-caps text-label-caps text-on-surface-variant">
-                      COMM CHANNEL
+                      EMAIL
                     </label>
                     <input
                       type="email"
@@ -122,7 +122,7 @@ function ContactPage() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-label-caps text-label-caps text-on-surface-variant">
-                    TRANSMISSION TYPE
+                    INQUIRY TYPE
                   </label>
                   <select className="bg-black border-0 border-b border-white/20 focus:ring-0 focus:border-primary-container focus:outline-none text-white font-body-md px-0 py-3 transition-colors appearance-none">
                     <option>GENERAL INQUIRY</option>
@@ -133,7 +133,7 @@ function ContactPage() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-label-caps text-label-caps text-on-surface-variant">
-                    DATA PAYLOAD
+                    MESSAGE
                   </label>
                   <textarea
                     rows={6}
@@ -146,7 +146,7 @@ function ContactPage() {
                     type="submit"
                     className="w-full md:w-auto bg-primary-container text-on-primary-container px-12 py-5 font-label-caps text-label-caps neon-glow transition-all flex items-center justify-center gap-3 active:scale-95"
                   >
-                    SEND TRANSMISSION
+                    SEND MESSAGE
                     <span className="material-symbols-outlined">send</span>
                   </button>
                 </div>
