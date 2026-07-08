@@ -70,13 +70,13 @@ function ContactPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60" />
                 <div className="absolute bottom-4 left-4">
                   <span className="bg-primary-container text-on-primary-container font-label-caps text-[10px] px-2 py-1">
-                    SECTOR 07 HQ
+                    CHICAGO HQ
                   </span>
                 </div>
               </div>
               <div className="p-8">
                 <h3 className="font-headline-md text-headline-md mb-2 uppercase">
-                  CHICAGO CENTER
+                  Chicago Office
                 </h3>
                 <address className="not-italic font-body-md text-body-md text-on-surface-variant flex flex-col gap-1">
                   <span>1247 W Fulton Market</span>
@@ -85,7 +85,7 @@ function ContactPage() {
                 <div className="mt-6 flex gap-4">
                   <div className="flex flex-col">
                     <span className="font-label-caps text-[10px] text-primary">
-                      COMMUNICATIONS
+                      PHONE
                     </span>
                     <span className="font-body-md text-body-md">+1 (312) 555-0107</span>
                   </div>
