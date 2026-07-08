@@ -37,11 +37,20 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
   });
 }
 
+// Prerender / node preview environments call `fetch(request)` with no env
+// binding, so ASSETS is undefined and the Cloudflare-shaped handler crashes.
+// Provide a no-op ASSETS binding as a fallback.
+const fallbackEnv = {
+  ASSETS: {
+    fetch: async () => new Response(null, { status: 404 }),
+  },
+};
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
       const handler = await getServerEntry();
-      const response = await handler.fetch(request, env, ctx);
+      const response = await handler.fetch(request, env ?? fallbackEnv, ctx);
       return await normalizeCatastrophicSsrResponse(response);
     } catch (error) {
       console.error(error);
