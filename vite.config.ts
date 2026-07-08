@@ -9,13 +9,15 @@ export default defineConfig({
     base: basePath,
     server: { hmr: { overlay: false } },
     build: {
-      rollupOptions: {
-        input: { app: "src/spa-entry.tsx" },
-        output: { entryFileNames: "[name].js" },
-      },
+      rollupOptions: { output: { entryFileNames: "[name].js" } },
     },
   },
   tanstackStart: {
     server: { entry: "server" },
+    spa: {
+      enabled: true,
+      maskPath: "/",
+      prerender: { outputPath: "/index.html", crawlLinks: false },
+    },
   },
 });
