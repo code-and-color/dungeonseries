@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { events, VENDOR_PACKET_URL, resolveImage } from "@/data/events";
 import festivalClip from "@/assets/festival-clip.mp4.asset.json";
+import clip1 from "@/assets/clip1.mp4.asset.json";
+import clip2 from "@/assets/clip2.mp4.asset.json";
+import clip3 from "@/assets/clip3.mp4.asset.json";
 
 const baseUrl = import.meta.env.BASE_URL ?? "/";
 
@@ -363,7 +366,7 @@ function HomePage() {
         </section>
       )}
 
-      {/* ── VIDEO ────────────────────────────────────────────────────────── */}
+      {/* ── VIDEO GALLERY ────────────────────────────────────────────────── */}
       <section className="py-stack-lg px-6 md:px-margin-desktop max-w-container-max mx-auto">
         <div className="text-center mb-10">
           <p className="font-label-caps text-label-caps text-primary-container tracking-[0.3em] mb-3">
@@ -373,7 +376,7 @@ function HomePage() {
             A LOOK AT THE FLOOR
           </h2>
         </div>
-        <div className="glass-panel overflow-hidden aspect-video max-w-4xl mx-auto">
+        <div className="glass-panel overflow-hidden aspect-video max-w-4xl mx-auto mb-4">
           <video
             src={festivalClip.url}
             className="w-full h-full object-cover"
@@ -384,8 +387,22 @@ function HomePage() {
             controls
           />
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6 max-w-4xl mx-auto">
-          {HEADLINERS.concat(SUPPORT).slice(0, 4).map((a) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-6">
+          {([clip1, clip2, clip3] as Array<{ url: string }>).map((c, i) => (
+            <div key={i} className="glass-panel overflow-hidden aspect-video">
+              <video
+                src={c.url}
+                className="w-full h-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-3 max-w-4xl mx-auto">
+          {HEADLINERS.concat(SUPPORT).slice(0, 6).map((a) => (
             <div key={a.name} className="aspect-square overflow-hidden glass-panel">
               <img
                 src={resolveImage(a.image)}
