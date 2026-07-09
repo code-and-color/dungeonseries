@@ -388,7 +388,7 @@ function HomePage() {
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-6">
-          {[clip1, clip2, clip3].map((c, i) => (
+          {[clip1, clip2, clip3].map((c: { url: string }, i) => (
             <div key={i} className="glass-panel overflow-hidden aspect-video">
               <video
                 src={c.url}
