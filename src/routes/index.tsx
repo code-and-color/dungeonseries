@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { events, VENDOR_PACKET_URL, resolveImage } from "@/data/events";
 import festivalClip from "@/assets/festival-clip.mp4.asset.json";
+import clip1 from "@/assets/clip1.mp4.asset.json";
+import clip2 from "@/assets/clip2.mp4.asset.json";
+import clip3 from "@/assets/clip3.mp4.asset.json";
 
 const baseUrl = import.meta.env.BASE_URL ?? "/";
 
