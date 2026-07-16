@@ -47,7 +47,7 @@ export function Header() {
             rel="noreferrer"
             className="hidden md:inline font-label-caps text-label-caps text-primary hover:text-primary-container transition-colors"
           >
-            IG
+            INSTAGRAM
           </a>
           <a
             href={festival.ticketUrl}
