@@ -79,8 +79,8 @@ function ContactPage() {
                   Chicago Office
                 </h3>
                 <address className="not-italic font-body-md text-body-md text-on-surface-variant flex flex-col gap-1">
-                  <span>1247 W Fulton Market</span>
-                  <span>Chicago, IL 60607</span>
+                  <span>1039 E 43rd Street</span>
+                  <span>Chicago, IL</span>
                 </address>
                 <div className="mt-6 flex gap-4">
                   <div className="flex flex-col">
@@ -158,11 +158,11 @@ function ContactPage() {
         {/* Secondary social grid */}
         <div className="mt-gutter grid grid-cols-1 md:grid-cols-4 gap-gutter">
           {[
-            ["INSTAGRAM", "@DUNGEON.SERIES"],
-            ["TWITTER / X", "/DUNGEON_SERIES"],
-            ["DISCORD", "THE_SANCTUARY_V7"],
-            ["TELEGRAM", "T.ME/DUNGEON_HQ"],
-          ].map(([label, value]) => (
+            ["INSTAGRAM", "@DUNGEONSERIES", "https://www.instagram.com/dungeonseries/"],
+            ["TWITTER / X", "/DUNGEON_SERIES", ""],
+            ["DISCORD", "THE_SANCTUARY_V7", ""],
+            ["TELEGRAM", "T.ME/DUNGEON_HQ", ""],
+          ].map(([label, value, url]) => (
             <div
               key={label}
               className="glass-panel p-6 border-l-2 border-primary-container"
@@ -170,7 +170,18 @@ function ContactPage() {
               <span className="font-label-caps text-[10px] text-on-surface-variant block mb-2">
                 {label}
               </span>
-              <span className="font-body-md text-body-md text-white">{value}</span>
+              {url ? (
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-body-md text-body-md text-white hover:text-primary transition-colors"
+                >
+                  {value}
+                </a>
+              ) : (
+                <span className="font-body-md text-body-md text-white">{value}</span>
+              )}
             </div>
           ))}
         </div>

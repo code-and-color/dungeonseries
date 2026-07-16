@@ -456,6 +456,8 @@ function HomePage() {
         </h2>
         <p className="text-on-background/60 mb-10">
           {festival.dateLabel} · {festival.venue}
+          <br />
+          1039 E 43rd Street, Chicago, IL
         </p>
         <a
           href={festival.ticketUrl}

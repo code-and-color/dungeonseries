@@ -11,19 +11,36 @@ export function Footer() {
             className="h-8 w-auto object-contain brightness-150"
           />
           <p className="font-label-caps text-[10px] text-on-secondary-fixed-variant tracking-widest uppercase">
-            © 2026 DUNGEON SERIES · CHICAGO, IL · NO ESCAPE.
+            © 2026 DUNGEON SERIES · 1039 E 43RD ST, CHICAGO, IL · NO ESCAPE.
           </p>
         </div>
         <div className="flex gap-8 md:gap-12">
-          {["INSTAGRAM", "TWITTER", "YOUTUBE", "TERMS"].map((s) => (
-            <a
-              key={s}
-              href="#"
-              className="font-label-caps text-label-caps text-on-secondary-fixed-variant hover:text-primary transition-colors grayscale hover:grayscale-0"
-            >
-              {s}
-            </a>
-          ))}
+          <a
+            href="https://www.instagram.com/dungeonseries/"
+            target="_blank"
+            rel="noreferrer"
+            className="font-label-caps text-label-caps text-on-secondary-fixed-variant hover:text-primary transition-colors"
+          >
+            INSTAGRAM
+          </a>
+          <a
+            href="#"
+            className="font-label-caps text-label-caps text-on-secondary-fixed-variant hover:text-primary transition-colors"
+          >
+            TWITTER
+          </a>
+          <a
+            href="#"
+            className="font-label-caps text-label-caps text-on-secondary-fixed-variant hover:text-primary transition-colors"
+          >
+            YOUTUBE
+          </a>
+          <a
+            href="#"
+            className="font-label-caps text-label-caps text-on-secondary-fixed-variant hover:text-primary transition-colors"
+          >
+            TERMS
+          </a>
         </div>
         <div className="flex flex-col items-start md:items-end gap-4">
           <p className="font-label-caps text-[10px] text-on-secondary-fixed-variant tracking-widest">
