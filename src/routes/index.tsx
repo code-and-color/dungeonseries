@@ -397,6 +397,8 @@ function HomePage() {
                 muted
                 loop
                 playsInline
+                controls
+                preload="metadata"
               />
             </div>
           ))}
