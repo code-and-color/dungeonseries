@@ -155,7 +155,9 @@ export const events: CalendarEvent[] = [
 export function resolveImage(src: string): string {
   if (/^https?:\/\//i.test(src)) return src;
   const base = import.meta.env.BASE_URL ?? "/";
-  return `${base}events/${src}`.replace(/([^:])\/{2,}/g, "$1/");
+  // encode spaces, parens, etc. so browsers can fetch the file
+  const encoded = encodeURIComponent(src);
+  return `${base}events/${encoded}`.replace(/([^:])\/{2,}/g, "$1/");
 }
 
 /** Public URL of the festival vendor packet PDF (drop it at this path). */
