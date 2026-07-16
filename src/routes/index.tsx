@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { startBackgroundMusic } from "@/components/site/BackgroundMusic";
 import { events, VENDOR_PACKET_URL, resolveImage } from "@/data/events";
 import festivalClip from "@/assets/festival-clip.mp4.asset.json";
 import clip1 from "@/assets/clip1.mp4.asset.json";
@@ -163,6 +164,7 @@ function HomePage() {
   const dismissSplash = () => {
     sessionStorage.setItem("ds-splash-seen", "1");
     setSplashOpen(false);
+    startBackgroundMusic();
   };
 
   return (
