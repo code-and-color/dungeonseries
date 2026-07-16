@@ -163,6 +163,7 @@ function HomePage() {
   const dismissSplash = () => {
     sessionStorage.setItem("ds-splash-seen", "1");
     setSplashOpen(false);
+    startBackgroundMusic();
   };
 
   return (
