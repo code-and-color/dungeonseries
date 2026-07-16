@@ -10,7 +10,7 @@ function getAudio(): HTMLAudioElement {
     audioEl = new Audio(trackAsset.url);
     audioEl.loop = true;
     audioEl.preload = "auto";
-    audioEl.volume = 0.5;
+    audioEl.volume = 0.275;
   }
   return audioEl;
 }
