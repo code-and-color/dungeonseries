@@ -42,6 +42,14 @@ export function Header() {
         </div>
         <div className="flex items-center gap-6">
           <a
+            href="https://www.instagram.com/dungeonseries/"
+            target="_blank"
+            rel="noreferrer"
+            className="hidden md:inline font-label-caps text-label-caps text-primary hover:text-primary-container transition-colors"
+          >
+            IG
+          </a>
+          <a
             href={festival.ticketUrl}
             target="_blank"
             rel="noreferrer"

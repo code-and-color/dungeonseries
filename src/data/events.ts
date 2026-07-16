@@ -61,7 +61,7 @@ export const events: CalendarEvent[] = [
     dateLabel: "AUGUST 9, 2026",
     timeLabel: "8:00 AM — 8:00 PM",
     title: "DUNGEON SERIES FESTIVAL",
-    venue: "Chicago, IL",
+    venue: "1039 E 43rd Street, Chicago, IL",
     blurb:
       "The flagship. One day, one city, one descent. Lineup unveiled in waves — each flyer marks a new chamber.",
     ticketUrl: `${TF}/festival-2026`,
