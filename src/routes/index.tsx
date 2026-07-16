@@ -376,24 +376,26 @@ function HomePage() {
             A LOOK AT THE FLOOR
           </h2>
         </div>
-        <div className="glass-panel overflow-hidden aspect-video max-w-4xl mx-auto mb-4">
+        <div className="glass-panel overflow-hidden aspect-[9/16] sm:aspect-video max-w-3xl mx-auto mb-4 bg-black">
           <video
+            key={festivalClip.url}
             src={festivalClip.url}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
             autoPlay
             muted
             loop
             playsInline
             controls
+            preload="auto"
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-6">
           {([clip1, clip2, clip3] as Array<{ url: string }>).map((c, i) => (
-            <div key={i} className="glass-panel overflow-hidden aspect-video">
+            <div key={c.url} className="glass-panel overflow-hidden aspect-[9/16] bg-black">
               <video
+                key={c.url}
                 src={c.url}
-                className="w-full h-full object-cover"
-                autoPlay
+                className="w-full h-full object-contain"
                 muted
                 loop
                 playsInline
