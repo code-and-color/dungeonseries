@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { startBackgroundMusic } from "@/components/site/BackgroundMusic";
 import { events, VENDOR_PACKET_URL, resolveImage } from "@/data/events";
-import festivalClip from "@/assets/festival-clip.mp4.asset.json";
-import clip1 from "@/assets/clip1.mp4.asset.json";
-import clip2 from "@/assets/clip2.mp4.asset.json";
-import clip3 from "@/assets/clip3.mp4.asset.json";
+const mediaBase = `${import.meta.env.BASE_URL ?? "/"}media/`;
+const festivalClip = { url: `${mediaBase}festival-clip.mp4` };
+const clip1 = { url: `${mediaBase}clip1.mp4` };
+const clip2 = { url: `${mediaBase}clip2.mp4` };
+const clip3 = { url: `${mediaBase}clip3.mp4` };
 
 const baseUrl = import.meta.env.BASE_URL ?? "/";
 
