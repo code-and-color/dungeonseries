@@ -8,7 +8,7 @@ let started = false;
 
 function getAudio(): HTMLAudioElement {
   if (!audioEl) {
-    audioEl = new Audio(trackAsset.url);
+    audioEl = new Audio(TRACK_URL);
     audioEl.loop = true;
     audioEl.preload = "auto";
     audioEl.volume = 0.20;
