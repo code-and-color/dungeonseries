@@ -260,9 +260,12 @@ function HomePage() {
 
       {/* ── STATS ────────────────────────────────────────────────────────── */}
       <section className="py-stack-lg px-6 md:px-margin-desktop max-w-container-max mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="flex flex-wrap justify-center gap-6">
           {STATS.map((st) => (
-            <div key={st.label} className="glass-panel p-8 text-center">
+            <div
+              key={st.label}
+              className="glass-panel p-8 text-center flex-1 min-w-[160px] md:min-w-[220px]"
+            >
               <div className="font-headline-lg text-headline-lg text-primary-container tabular-nums">
                 {st.value}
                 <span className="text-on-background/60">{st.suffix}</span>
