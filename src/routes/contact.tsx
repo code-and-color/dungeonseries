@@ -55,7 +55,7 @@ function ContactPage() {
                 className="inline-flex items-center gap-2 font-label-caps text-label-caps text-white group-hover:text-primary transition-colors"
                 href="mailto:tyharvey2@gmail.com"
               >
-                OPS@DUNGEONSERIES.COM
+                TYHARVEY2@GMAIL.COM
                 <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
               </a>
             </div>
