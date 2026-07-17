@@ -448,25 +448,37 @@ function HomePage() {
               SCENES FROM PAST EVENTS
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {MOMENTS.map((m) => (
-              <figure
-                key={m.src}
-                className="group relative aspect-[3/4] overflow-hidden glass-panel"
-              >
-                <img
-                  src={m.src}
-                  alt={m.alt}
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                <figcaption className="absolute bottom-0 left-0 right-0 p-4 text-center font-label-caps text-label-caps tracking-[0.3em] text-on-background">
-                  {m.caption}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
+          <Carousel
+            opts={{ align: "start", loop: true }}
+            className="max-w-5xl mx-auto"
+          >
+            <CarouselContent className="-ml-4">
+              {MOMENTS.map((m) => (
+                <CarouselItem
+                  key={m.src}
+                  className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3"
+                >
+                  <figure className="group relative aspect-[3/4] overflow-hidden glass-panel">
+                    <img
+                      src={m.src}
+                      alt={m.alt}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                    <figcaption className="absolute bottom-0 left-0 right-0 p-4 text-center font-label-caps text-label-caps tracking-[0.3em] text-on-background">
+                      {m.caption}
+                    </figcaption>
+                  </figure>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex -left-4 bg-background/80 border-white/20 text-on-background hover:bg-primary-container hover:text-white" />
+            <CarouselNext className="hidden md:flex -right-4 bg-background/80 border-white/20 text-on-background hover:bg-primary-container hover:text-white" />
+          </Carousel>
+          <p className="text-center text-on-background/40 text-body-md mt-6 italic">
+            Swipe to see more.
+          </p>
         </div>
       </section>
 
