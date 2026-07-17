@@ -9,6 +9,13 @@ const clip1 = { url: `${mediaBase}clip1.mp4` };
 const clip2 = { url: `${mediaBase}clip2.mp4` };
 const clip3 = { url: `${mediaBase}clip3.mp4` };
 
+const momentsBase = `${import.meta.env.BASE_URL ?? "/"}moments/`;
+const MOMENTS: Array<{ src: string; alt: string; caption: string }> = [
+  { src: `${momentsBase}maestro.png`, alt: "Steve Maestro on the decks", caption: "STEVE MAESTRO" },
+  { src: `${momentsBase}bracken.png`, alt: "Dion Bracken in the booth", caption: "DION BRACKEN" },
+  { src: `${momentsBase}crowd-1.jpg`, alt: "Dungeon Series crowd", caption: "THE FAMILY" },
+];
+
 const baseUrl = import.meta.env.BASE_URL ?? "/";
 
 const HOME_TITLE = "Dungeon Series Festival · August 9, 2026 · Chicago";
