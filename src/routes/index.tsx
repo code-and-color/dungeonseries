@@ -415,7 +415,6 @@ function HomePage() {
                 key={c.url}
                 src={c.url}
                 className="w-full h-full object-contain"
-                muted
                 loop
                 playsInline
                 controls
