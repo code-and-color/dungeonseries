@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import trackAsset from "@/assets/background-loop.mp3.asset.json";
+
+const TRACK_URL = `${import.meta.env.BASE_URL ?? "/"}media/background-loop.mp3`;
 
 // Module-level singleton so audio survives route changes and re-mounts.
 let audioEl: HTMLAudioElement | null = null;
