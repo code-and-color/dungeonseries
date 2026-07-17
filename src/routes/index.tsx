@@ -9,6 +9,13 @@ const clip1 = { url: `${mediaBase}clip1.mp4` };
 const clip2 = { url: `${mediaBase}clip2.mp4` };
 const clip3 = { url: `${mediaBase}clip3.mp4` };
 
+const momentsBase = `${import.meta.env.BASE_URL ?? "/"}moments/`;
+const MOMENTS: Array<{ src: string; alt: string; caption: string }> = [
+  { src: `${momentsBase}maestro.png`, alt: "Steve Maestro on the decks", caption: "STEVE MAESTRO" },
+  { src: `${momentsBase}bracken.png`, alt: "Dion Bracken in the booth", caption: "DION BRACKEN" },
+  { src: `${momentsBase}crowd-1.jpg`, alt: "Dungeon Series crowd", caption: "THE FAMILY" },
+];
+
 const baseUrl = import.meta.env.BASE_URL ?? "/";
 
 const HOME_TITLE = "Dungeon Series Festival · August 9, 2026 · Chicago";
@@ -420,6 +427,41 @@ function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* ── MOMENTS ──────────────────────────────────────────────────────── */}
+      <section className="py-stack-lg bg-surface-container-lowest border-y border-white/5">
+        <div className="px-6 md:px-margin-desktop max-w-container-max mx-auto">
+          <div className="text-center mb-10">
+            <p className="font-label-caps text-label-caps text-primary-container tracking-[0.3em] mb-3">
+              MOMENTS FROM THE DUNGEON
+            </p>
+            <h2 className="font-headline-lg text-headline-md md:text-headline-lg text-on-background uppercase">
+              SCENES FROM PAST EVENTS
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {MOMENTS.map((m) => (
+              <figure
+                key={m.src}
+                className="group relative aspect-[3/4] overflow-hidden glass-panel"
+              >
+                <img
+                  src={m.src}
+                  alt={m.alt}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                <figcaption className="absolute bottom-0 left-0 right-0 p-4 text-center font-label-caps text-label-caps tracking-[0.3em] text-on-background">
+                  {m.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
 
 
       {/* ── FAQ ──────────────────────────────────────────────────────────── */}
