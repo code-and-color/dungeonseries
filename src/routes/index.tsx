@@ -3,12 +3,21 @@ import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { startBackgroundMusic } from "@/components/site/BackgroundMusic";
 import { events, VENDOR_PACKET_URL, resolveImage } from "@/data/events";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 const mediaBase = `${import.meta.env.BASE_URL ?? "/"}media/`;
 const festivalClip = { url: `${mediaBase}festival-clip.mp4` };
 const clip1 = { url: `${mediaBase}clip1.mp4` };
 const clip2 = { url: `${mediaBase}clip2.mp4` };
 const clip3 = { url: `${mediaBase}clip3.mp4` };
 
+// Add more moments here anytime — just drop the image in `public/moments/`
+// and append an entry below.
 const momentsBase = `${import.meta.env.BASE_URL ?? "/"}moments/`;
 const MOMENTS: Array<{ src: string; alt: string; caption: string }> = [
   { src: `${momentsBase}maestro.png`, alt: "Steve Maestro on the decks", caption: "STEVE MAESTRO" },
