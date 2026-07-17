@@ -63,7 +63,7 @@ export const events: CalendarEvent[] = [
     title: "DUNGEON SERIES FESTIVAL",
     venue: "1039 E 43rd Street, Chicago, IL",
     blurb:
-      "The flagship. One day, one city, one descent. Lineup unveiled in waves — each flyer marks a new chamber.",
+      "The marquee event presented by Ty Harvey. ",
     ticketUrl: `${TF}/festival-2026`,
     featured: true,
     flyers: [

@@ -109,7 +109,6 @@ const STATS = [
   { value: "1", suffix: "", label: "DAY OF MUSIC" },
   { value: "12", suffix: "+", label: "HOURS" },
   { value: "20", suffix: "+", label: "ARTISTS" },
-  { value: "1", suffix: "", label: "CITY · CHICAGO" },
 ];
 
 const FAQS = [
@@ -354,7 +353,7 @@ function HomePage() {
             </div>
             <div>
               <p className="font-label-caps text-label-caps text-primary-container tracking-[0.3em] mb-4">
-                THE FLAGSHIP EVENT
+                THE MARQUEE EVENT
               </p>
               <h3 className="font-headline-lg text-headline-md md:text-headline-lg text-on-background uppercase mb-6">
                 ONE DAY IN CHICAGO
@@ -389,7 +388,7 @@ function HomePage() {
       <section className="py-stack-lg px-6 md:px-margin-desktop max-w-container-max mx-auto">
         <div className="text-center mb-10">
           <p className="font-label-caps text-label-caps text-primary-container tracking-[0.3em] mb-3">
-            INSIDE THE DUNGEON
+            INSIDE ROOM 43
           </p>
           <h2 className="font-headline-lg text-headline-md md:text-headline-lg text-on-background uppercase">
             A LOOK AT THE FLOOR
@@ -522,7 +521,6 @@ function HomePage() {
         <p className="text-on-background/60 mb-10">
           {festival.dateLabel} · {festival.venue}
           <br />
-          1039 E 43rd Street, Chicago, IL
         </p>
         <a
           href={festival.ticketUrl}

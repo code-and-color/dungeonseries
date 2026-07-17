@@ -160,8 +160,7 @@ function ContactPage() {
           {[
             ["INSTAGRAM", "@DUNGEONSERIES", "https://www.instagram.com/dungeonseries/"],
             ["TWITTER / X", "/DUNGEON_SERIES", ""],
-            ["DISCORD", "THE_SANCTUARY_V7", ""],
-            ["TELEGRAM", "T.ME/DUNGEON_HQ", ""],
+            ["FACEBOOK", "TY HARVEY", ""],
           ].map(([label, value, url]) => (
             <div
               key={label}

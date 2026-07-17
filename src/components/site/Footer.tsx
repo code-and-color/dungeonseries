@@ -11,7 +11,7 @@ export function Footer() {
             className="h-8 w-auto object-contain brightness-150"
           />
           <p className="font-label-caps text-[10px] text-on-secondary-fixed-variant tracking-widest uppercase">
-            © 2026 DUNGEON SERIES · 1039 E 43RD ST, CHICAGO, IL · NO ESCAPE.
+            © 2026 DUNGEON SERIES · 1039 E 43RD ST, CHICAGO, IL
           </p>
         </div>
         <div className="flex gap-8 md:gap-12">
@@ -44,7 +44,7 @@ export function Footer() {
         </div>
         <div className="flex flex-col items-start md:items-end gap-4">
           <p className="font-label-caps text-[10px] text-on-secondary-fixed-variant tracking-widest">
-            STAY INFECTED
+            ROOM 43
           </p>
           <div className="flex border-b border-white/20 pb-2 w-64">
             <input
