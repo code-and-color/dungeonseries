@@ -343,11 +343,11 @@ function HomePage() {
             MEET THE DUNGEON
           </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+          <div className="flex flex-wrap justify-center gap-4 mb-10">
             {HEADLINERS.map((artist) => (
               <div
                 key={artist.name}
-                className="group relative aspect-[3/4] overflow-hidden glass-panel border-primary-container/30 hover:border-primary-container transition-colors"
+                className="group relative aspect-[3/4] w-[calc(50%-0.5rem)] md:w-[280px] overflow-hidden glass-panel border-primary-container/30 hover:border-primary-container transition-colors"
               >
                 <img
                   src={resolveImage(artist.image)}
@@ -367,6 +367,7 @@ function HomePage() {
             ))}
           </div>
 
+
           <div className="border-t border-white/10 pt-8">
             <p className="font-label-caps text-[10px] tracking-[0.3em] text-on-background/40 mb-6 text-center">
               WITH SUPPORT FROM
@@ -380,16 +381,11 @@ function HomePage() {
                   <img
                     src={resolveImage(artist.image)}
                     alt={artist.name}
-                    className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-3 text-center">
-                    <span className="font-headline-md text-[14px] md:text-[16px] uppercase text-on-background">
-                      {artist.name}
-                    </span>
-                  </div>
                 </div>
               ))}
+
             </div>
             <p className="text-center text-on-background/40 text-body-md mt-8 italic">
               More artists announced in waves. Follow @dungeonseries for drops.
