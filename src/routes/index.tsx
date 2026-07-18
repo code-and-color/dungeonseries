@@ -167,28 +167,16 @@ function Splash({ onEnter, ticketUrl }: { onEnter: () => void; ticketUrl: string
           <div className="absolute -inset-10 rounded-full bg-primary-container/30 blur-3xl pointer-events-none" />
           {/* Inner hairline */}
           <div className="absolute inset-0 rounded-full border border-primary-container/40 pointer-events-none" />
-          {/* Circular video emblem */}
+          {/* Circular animated emblem */}
           <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden bg-black shadow-[0_0_80px_rgba(255,85,64,0.45)]">
-            <video
-              src={`${mediaBase}logo-spotlight.mp4`}
-              autoPlay
-              loop
-              muted
-              
-              playsInline
-              disablePictureInPicture
-              disableRemotePlayback
-              preload="auto"
-              aria-label="Dungeon Series"
-              ref={(el) => {
-                if (el) {
-                  el.muted = true;
-                  const p = el.play();
-                  if (p && typeof p.catch === "function") p.catch(() => {});
-                }
-              }}
-              className="w-full h-full object-cover scale-[1.02] pointer-events-none"
-            />
+            <picture>
+              <source srcSet={`${mediaBase}logo-spotlight.webp`} type="image/webp" />
+              <img
+                src={`${mediaBase}logo-spotlight.gif`}
+                alt="Dungeon Series spotlight logo"
+                className="w-full h-full object-cover scale-[1.02] pointer-events-none"
+              />
+            </picture>
 
             {/* Subtle inner shading */}
             <div className="absolute inset-0 rounded-full shadow-[inset_0_0_60px_rgba(0,0,0,0.55)] pointer-events-none" />
