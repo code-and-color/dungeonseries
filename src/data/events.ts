@@ -69,14 +69,19 @@ export const events: CalendarEvent[] = [
     flyers: [
       // Headliners first, then support. Files live in public/events/.
       {
+        src: "Jamie326_Elevator.png",
+        alt: "Jamie 3:26 — Dungeon Series Festival headliner",
+        label: "JAMIE 3:26",
+      },
+      {
+        src: "Osunlade.jpeg",
+        alt: "Osunlade — Dungeon Series Festival headliner",
+        label: "OSUNLADE",
+      },
+      {
         src: "Dungeon Series Festival - CTRLZORA.png",
         alt: "Zora Murphy — Dungeon Series Festival performer",
         label: "ZORA MURPHY",
-      },
-      {
-        src: "Dungeon Series Festival - Powell.png",
-        alt: "Dwayne Powell — Dungeon Series Festival performer",
-        label: "DWAYNE POWELL",
       },
       {
         src: "Dungeon Series Festival - Bracken.png",
@@ -102,11 +107,6 @@ export const events: CalendarEvent[] = [
         src: "Dungeon Series Festival - Hunt (1).png",
         alt: "Hunt — Dungeon Series Festival performer",
         label: "HUNT",
-      },
-      {
-        src: "Dungeon Series Festival - Jamie 326.png",
-        alt: "Jamie 326 — Dungeon Series Festival performer",
-        label: "JAMIE 326",
       },
       {
         src: "Dungeon Series Festival - Koko (1).png",
