@@ -207,17 +207,18 @@ function Splash({ onEnter, ticketUrl }: { onEnter: () => void; ticketUrl: string
           target="_blank"
           rel="noreferrer"
           onClick={onEnter}
-          className="spotlight-cta bg-primary-container text-white px-14 py-4 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95 tracking-[0.4em] mb-6"
+          className="spotlight-cta bg-primary-container text-white px-16 py-5 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95 tracking-[0.4em] mb-8"
         >
           GET TICKETS
         </a>
 
         <button
           onClick={onEnter}
-          className="text-on-background/45 hover:text-on-background font-label-caps text-[10px] tracking-[0.4em] transition-colors"
+          className="text-on-background/50 hover:text-on-background font-label-caps text-[11px] tracking-[0.3em] underline underline-offset-4 transition-colors"
         >
-          ENTER SITE →
+          ENTER SITE
         </button>
+
       </div>
     </div>
   );
