@@ -343,11 +343,11 @@ function HomePage() {
             MEET THE DUNGEON
           </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+          <div className="flex flex-wrap justify-center gap-4 mb-10">
             {HEADLINERS.map((artist) => (
               <div
                 key={artist.name}
-                className="group relative aspect-[3/4] overflow-hidden glass-panel border-primary-container/30 hover:border-primary-container transition-colors"
+                className="group relative aspect-[3/4] w-[calc(50%-0.5rem)] md:w-[280px] overflow-hidden glass-panel border-primary-container/30 hover:border-primary-container transition-colors"
               >
                 <img
                   src={resolveImage(artist.image)}
@@ -366,6 +366,7 @@ function HomePage() {
               </div>
             ))}
           </div>
+
 
           <div className="border-t border-white/10 pt-8">
             <p className="font-label-caps text-[10px] tracking-[0.3em] text-on-background/40 mb-6 text-center">
