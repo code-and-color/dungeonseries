@@ -525,32 +525,6 @@ function HomePage() {
             preload="auto"
           />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-6">
-          {([clip1, clip2, clip3] as Array<{ url: string }>).map((c, i) => (
-            <div key={c.url} className="glass-panel overflow-hidden aspect-[9/16] bg-black">
-              <video
-                key={c.url}
-                src={c.url}
-                className="w-full h-full object-contain"
-                loop
-                playsInline
-                controls
-                preload="metadata"
-              />
-            </div>
-          ))}
-        </div>
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-3 max-w-4xl mx-auto">
-          {HEADLINERS.concat(SUPPORT).slice(0, 6).map((a) => (
-            <div key={a.name} className="aspect-square overflow-hidden glass-panel">
-              <img
-                src={resolveImage(a.image)}
-                alt={a.name}
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-              />
-            </div>
-          ))}
-        </div>
       </section>
 
       {/* ── MOMENTS ──────────────────────────────────────────────────────── */}
