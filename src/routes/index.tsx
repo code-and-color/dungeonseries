@@ -423,6 +423,17 @@ function HomePage() {
                   <img
                     src={resolveImage(artist.image)}
                     alt={artist.name}
+                    loading="lazy"
+                    decoding="async"
+                    onError={(e) => {
+                      const img = e.currentTarget;
+                      if (!img.dataset.retried) {
+                        img.dataset.retried = "1";
+                        const url = new URL(img.src, window.location.href);
+                        url.searchParams.set("r", "1");
+                        img.src = url.toString();
+                      }
+                    }}
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                 </div>
