@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { startBackgroundMusic } from "@/components/site/BackgroundMusic";
-import { events, VENDOR_PACKET_URL, resolveImage } from "@/data/events";
+import { events, VENDOR_PACKET_URL, resolveImage, SCHEDULE } from "@/data/events";
+import { ScheduleTable } from "@/components/site/ScheduleTable";
 import {
   Carousel,
   CarouselContent,
@@ -393,6 +394,16 @@ function HomePage() {
             </p>
           </div>
         </div>
+      </section>
+
+      {/* ── COMPACT SCHEDULE ─────────────────────────────────────────────── */}
+      <section className="py-stack-lg px-6 md:px-margin-desktop max-w-container-max mx-auto">
+        <ScheduleTable
+          items={SCHEDULE}
+          compact
+          title="SET TIMES"
+          highlight={["Osunlade", "Jaime 3:26"]}
+        />
       </section>
 
       {/* ── FLYER ────────────────────────────────────────────────────────── */}

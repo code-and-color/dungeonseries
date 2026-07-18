@@ -51,6 +51,11 @@ export type CalendarEvent = {
   flyers?: Flyer[];
 };
 
+export type ScheduleSlot = {
+  time: string;
+  artist: string;
+};
+
 // TODO: replace with the real TicketFalcon organizer link.
 const TF = "https://www.ticketfalcon.com/dungeon-series";
 
@@ -145,6 +150,18 @@ export const events: CalendarEvent[] = [
     blurb: "High-tempo techno and kinetic visuals. Pulse monitoring at the door.",
     ticketUrl: `${TF}/red-shift-2026-12-11`,
   },
+];
+
+export const SCHEDULE: ScheduleSlot[] = [
+  { time: "10:00 AM – 11:00 AM", artist: "Stephen Cosey" },
+  { time: "11:00 AM – 12:00 PM", artist: "CntrlZora" },
+  { time: "12:00 PM – 1:00 PM", artist: "Maestro" },
+  { time: "1:00 PM – 2:00 PM", artist: "Steve Maxwell" },
+  { time: "2:00 PM – 3:00 PM", artist: "Bracken" },
+  { time: "3:00 PM – 4:00 PM", artist: "Gene Hunt" },
+  { time: "4:00 PM – 5:00 PM", artist: "Duane Powell" },
+  { time: "5:00 PM – 6:30 PM", artist: "Osunlade" },
+  { time: "6:30 PM – 8:00 PM", artist: "Jaime 3:26" },
 ];
 
 /**

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { events, resolveImage, VENDOR_PACKET_URL } from "@/data/events";
+import { events, resolveImage, VENDOR_PACKET_URL, SCHEDULE } from "@/data/events";
+import { ScheduleTable } from "@/components/site/ScheduleTable";
 
 const festival = events.find((e) => e.featured) ?? events[0];
 
@@ -110,6 +111,16 @@ function EventsPage() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* ── FULL SCHEDULE ───────────────────────────────────────────────── */}
+        <section className="mb-stack-lg">
+          <ScheduleTable
+            items={SCHEDULE}
+            title="AUGUST 9 SET TIMES"
+            subtitle="FESTIVAL SCHEDULE"
+            highlight={["Osunlade", "Jaime 3:26"]}
+          />
         </section>
 
         {/* ── LINEUP ────────────────────────────────────────────────────── */}
