@@ -396,6 +396,16 @@ function HomePage() {
         </div>
       </section>
 
+      {/* ── COMPACT SCHEDULE ─────────────────────────────────────────────── */}
+      <section className="py-stack-lg px-6 md:px-margin-desktop max-w-container-max mx-auto">
+        <ScheduleTable
+          items={SCHEDULE}
+          compact
+          title="SET TIMES"
+          highlight={["Osunlade", "Jaime 3:26"]}
+        />
+      </section>
+
       {/* ── FLYER ────────────────────────────────────────────────────────── */}
       {heroFlyer && (
         <section className="py-stack-lg px-6 md:px-margin-desktop max-w-container-max mx-auto">

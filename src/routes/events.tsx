@@ -113,6 +113,16 @@ function EventsPage() {
           </div>
         </section>
 
+        {/* ── FULL SCHEDULE ───────────────────────────────────────────────── */}
+        <section className="mb-stack-lg">
+          <ScheduleTable
+            items={SCHEDULE}
+            title="AUGUST 9 SET TIMES"
+            subtitle="FESTIVAL SCHEDULE"
+            highlight={["Osunlade", "Jaime 3:26"]}
+          />
+        </section>
+
         {/* ── LINEUP ────────────────────────────────────────────────────── */}
         {festival.flyers && festival.flyers.length > 0 && (
           <section className="py-stack-lg bg-surface-container-lowest border-y border-white/5 -mx-6 md:-mx-margin-desktop px-6 md:px-margin-desktop mb-stack-lg">
