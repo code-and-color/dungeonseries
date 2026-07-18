@@ -165,7 +165,7 @@ function Splash({ onEnter, ticketUrl }: { onEnter: () => void; ticketUrl: string
           target="_blank"
           rel="noreferrer"
           onClick={onEnter}
-          className="splight-cta bg-primary-container text-white px-16 py-5 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95 tracking-[0.4em] mb-8"
+          className="spotlight-cta bg-primary-container text-white px-16 py-5 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95 tracking-[0.4em] mb-8"
         >
           GET TICKETS
         </a>
