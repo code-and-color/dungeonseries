@@ -69,7 +69,7 @@ export const events: CalendarEvent[] = [
     flyers: [
       // Headliners first, then support. Files live in public/events/.
       {
-        src: "Jamie326_Elevator.png",
+        src: "Dungeon Series Festival - Jamie 326.png",
         alt: "Jamie 3:26 — Dungeon Series Festival headliner",
         label: "JAMIE 3:26",
       },
