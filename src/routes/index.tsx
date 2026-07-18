@@ -141,50 +141,87 @@ const FAQS = [
 function Splash({ onEnter, ticketUrl }: { onEnter: () => void; ticketUrl: string }) {
   return (
     <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,85,64,0.25),transparent_65%)] pointer-events-none" />
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none [background-image:repeating-linear-gradient(0deg,#fff_0,#fff_1px,transparent_1px,transparent_3px)]" />
-      <div className="relative z-10 flex flex-col items-center text-center px-6 animate-[fadeIn_0.8s_ease-out]">
-        <video
-          src={`${mediaBase}logo-spotlight.mp4`}
-          poster={`${baseUrl}og-image.png`}
-          autoPlay
-          loop
-          muted
-          playsInline
-          aria-label="Dungeon Series"
-          className="w-56 md:w-80 mb-10 drop-shadow-[0_0_60px_rgba(255,85,64,0.6)]"
-        />
-        <p className="font-label-caps text-label-caps text-primary-container tracking-[0.5em] mb-4">
-          DUNGEON SERIES
-        </p>
-        <h1 className="font-headline-xl text-headline-lg md:text-headline-xl text-on-background uppercase leading-[0.9] mb-6">
-          AUGUST 9<br />CHICAGO
+      {/* Ambient glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(255,85,64,0.28),transparent_60%)] pointer-events-none" />
+      {/* Vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_40%,rgba(0,0,0,0.75)_100%)] pointer-events-none" />
+      {/* Fine scanlines */}
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none [background-image:repeating-linear-gradient(0deg,#fff_0,#fff_1px,transparent_1px,transparent_3px)]" />
+
+      <div className="relative z-10 flex flex-col items-center text-center px-6 animate-[fadeIn_1s_ease-out]">
+        {/* Logo emblem — circular masked video with rotating aura */}
+        <div className="relative mb-12 group">
+          {/* Rotating conic ring */}
+          <div
+            className="absolute -inset-3 rounded-full opacity-70 blur-[2px] animate-[spin_9s_linear_infinite]"
+            style={{
+              background:
+                "conic-gradient(from 0deg, rgba(255,85,64,0) 0deg, rgba(255,85,64,0.9) 90deg, rgba(255,85,64,0) 180deg, rgba(255,85,64,0.6) 270deg, rgba(255,85,64,0) 360deg)",
+              WebkitMask:
+                "radial-gradient(circle, transparent 58%, #000 60%, #000 100%)",
+              mask:
+                "radial-gradient(circle, transparent 58%, #000 60%, #000 100%)",
+            }}
+          />
+          {/* Soft outer bloom */}
+          <div className="absolute -inset-10 rounded-full bg-primary-container/30 blur-3xl pointer-events-none" />
+          {/* Inner hairline */}
+          <div className="absolute inset-0 rounded-full border border-primary-container/40 pointer-events-none" />
+          {/* Circular video emblem */}
+          <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden bg-black shadow-[0_0_80px_rgba(255,85,64,0.45)]">
+            <video
+              src={`${mediaBase}logo-spotlight.mp4`}
+              poster={`${baseUrl}og-image.png`}
+              autoPlay
+              loop
+              muted
+              playsInline
+              aria-label="Dungeon Series"
+              className="w-full h-full object-cover scale-[1.02]"
+            />
+            {/* Subtle inner shading */}
+            <div className="absolute inset-0 rounded-full shadow-[inset_0_0_60px_rgba(0,0,0,0.55)] pointer-events-none" />
+          </div>
+        </div>
+
+        {/* Wordmark */}
+        <div className="flex items-center gap-4 mb-6">
+          <span className="h-px w-10 bg-on-background/30" />
+          <p className="font-label-caps text-[11px] md:text-xs text-primary-container tracking-[0.65em]">
+            DUNGEON SERIES
+          </p>
+          <span className="h-px w-10 bg-on-background/30" />
+        </div>
+
+        <h1 className="font-headline-xl text-headline-lg md:text-headline-xl text-on-background uppercase leading-[0.9] mb-5">
+          AUGUST 9 · CHICAGO
         </h1>
-        <p className="text-on-background/60 font-body-md mb-10 tracking-widest">
+        <p className="text-on-background/55 font-label-caps text-[11px] md:text-xs tracking-[0.45em] mb-12">
           8:00 AM — 8:00 PM
         </p>
 
-        {/* Spotlight CTA */}
+        {/* CTA */}
         <a
           href={ticketUrl}
           target="_blank"
           rel="noreferrer"
           onClick={onEnter}
-          className="spotlight-cta bg-primary-container text-white px-16 py-5 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95 tracking-[0.4em] mb-8"
+          className="spotlight-cta bg-primary-container text-white px-14 py-4 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95 tracking-[0.4em] mb-6"
         >
           GET TICKETS
         </a>
 
         <button
           onClick={onEnter}
-          className="text-on-background/50 hover:text-on-background font-label-caps text-[11px] tracking-[0.3em] underline underline-offset-4 transition-colors"
+          className="text-on-background/45 hover:text-on-background font-label-caps text-[10px] tracking-[0.4em] transition-colors"
         >
-          ENTER SITE
+          ENTER SITE →
         </button>
       </div>
     </div>
   );
 }
+
 
 function HomePage() {
   const festival = events.find((e) => e.featured) ?? events[0];
