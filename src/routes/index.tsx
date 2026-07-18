@@ -89,8 +89,8 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
 type Artist = { name: string; image: string; headliner?: boolean };
 
 const HEADLINERS: Artist[] = [
-  { name: "ZORA MURPHY", image: "Dungeon Series Festival - CTRLZORA.png", headliner: true },
-  { name: "DWAYNE POWELL", image: "Dungeon Series Festival - Powell.png", headliner: true },
+  { name: "JAMIE 3:26", image: "Jamie326_Elevator.png", headliner: true },
+  { name: "OSUNLADE", image: "Osunlade.jpeg", headliner: true },
 ];
 
 const SUPPORT: Artist[] = [
