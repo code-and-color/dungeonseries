@@ -97,12 +97,13 @@ const SUPPORT: Artist[] = [
   { name: "BRACKEN", image: "Dungeon Series Festival - Bracken.png" },
   { name: "BREATHLEZZ", image: "Dungeon Series Festival - Breathlezz.png" },
   { name: "COSEY", image: "Dungeon Series Festival - Cosey.png" },
+  { name: "CTRLZORA", image: "Dungeon Series Festival - CTRLZORA.png" },
   { name: "HARDISON", image: "Dungeon Series Festival - Hardison.png" },
   { name: "HUNT", image: "Dungeon Series Festival - Hunt (1).png" },
-  { name: "JAMIE 326", image: "Dungeon Series Festival - Jamie 326.png" },
   { name: "KOKO", image: "Dungeon Series Festival - Koko (1).png" },
   { name: "MAESTRO", image: "Dungeon Series Festival - Maestro.png" },
   { name: "MAXWELL", image: "Dungeon Series Festival - Maxwell.png" },
+  { name: "POWELL", image: "Dungeon Series Festival - Powell.png" },
 ];
 
 const STATS = [
