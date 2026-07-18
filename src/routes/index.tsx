@@ -158,7 +158,7 @@ const FAQS = [
   },
   {
     q: "What time do gates open?",
-    a: "Gates open at 2:00 PM. Music runs until late night. Arrive early to skip the line.",
+    a: "Gates open at 9:00 AM. Music starts at 10:00 AM and runs until 8:00 PM. Arrive early to skip the line.",
   },
   {
     q: "How do I receive my tickets?",
