@@ -51,6 +51,11 @@ export type CalendarEvent = {
   flyers?: Flyer[];
 };
 
+export type ScheduleSlot = {
+  time: string;
+  artist: string;
+};
+
 // TODO: replace with the real TicketFalcon organizer link.
 const TF = "https://www.ticketfalcon.com/dungeon-series";
 
