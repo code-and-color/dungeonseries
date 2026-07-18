@@ -566,6 +566,13 @@ function HomePage() {
           </div>
           <Carousel
             opts={{ align: "start", loop: true }}
+            plugins={[
+              Autoplay({
+                delay: 3000,
+                stopOnInteraction: false,
+                stopOnMouseEnter: true,
+              }),
+            ]}
             className="max-w-5xl mx-auto"
           >
             <CarouselContent className="-ml-4">
@@ -581,10 +588,14 @@ function HomePage() {
                       loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                    <figcaption className="absolute bottom-0 left-0 right-0 p-4 text-center font-label-caps text-label-caps tracking-[0.3em] text-on-background">
-                      {m.caption}
-                    </figcaption>
+                    {m.caption && (
+                      <>
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                        <figcaption className="absolute bottom-0 left-0 right-0 p-4 text-center font-label-caps text-label-caps tracking-[0.3em] text-on-background">
+                          {m.caption}
+                        </figcaption>
+                      </>
+                    )}
                   </figure>
                 </CarouselItem>
               ))}
@@ -593,7 +604,7 @@ function HomePage() {
             <CarouselNext className="hidden md:flex -right-4 bg-background/80 border-white/20 text-on-background hover:bg-primary-container hover:text-white" />
           </Carousel>
           <p className="text-center text-on-background/40 text-body-md mt-6 italic">
-            Swipe to see more.
+            Auto-scrolling · hover to pause.
           </p>
         </div>
       </section>
