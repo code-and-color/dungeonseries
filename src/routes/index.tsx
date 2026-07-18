@@ -18,12 +18,50 @@ const clip2 = { url: `${mediaBase}clip2.mp4` };
 const clip3 = { url: `${mediaBase}clip3.mp4` };
 
 // Add more moments here anytime — just drop the image in `public/moments/`
-// and append an entry below.
+// and append an entry below. To give a photo a real caption (like an artist
+// name), add it near the top of the list with a `caption` string.
 const momentsBase = `${import.meta.env.BASE_URL ?? "/"}moments/`;
-const MOMENTS: Array<{ src: string; alt: string; caption: string }> = [
-  { src: `${momentsBase}maestro.png`, alt: "Steve Maestro on the decks", caption: "STEVE MAESTRO" },
-  { src: `${momentsBase}bracken.png`, alt: "Dion Bracken in the booth", caption: "DION BRACKEN" },
+const DEFAULT_MOMENT_CAPTION = "DUNGEON SERIES · PAST EVENT";
+const NAMED_MOMENTS: Array<{ file: string; alt: string; caption: string }> = [
+  { file: "maestro.png", alt: "Steve Maestro on the decks", caption: "STEVE MAESTRO" },
+  { file: "bracken.png", alt: "Dion Bracken in the booth", caption: "DION BRACKEN" },
 ];
+const EXTRA_MOMENT_FILES: string[] = [
+  "crowd-1.jpg",
+  "image000001.JPG",
+  "740628622_26844506721895336_852612985528828770_n.jpg",
+  "DSC00788.jpg","DSC00798.jpg","DSC00805.jpg","DSC00808.jpg","DSC00811.jpg",
+  "DSC00814.jpg","DSC00820.jpg","DSC00829.jpg","DSC00834.jpg","DSC00835.jpg",
+  "DSC00838.jpg","DSC00850.jpg","DSC00854.jpg","DSC00861.jpg","DSC00862.jpg",
+  "DSC00867.jpg","DSC00871.jpg","DSC00891.jpg","DSC00893.jpg","DSC00954.jpg",
+  "DSC00957.jpg","DSC00960.jpg","DSC00961.jpg","DSC00969.jpg","DSC00975.jpg",
+  "DSC00978.jpg","DSC00984.jpg","DSC00990.jpg","DSC00993.jpg","DSC00996.jpg",
+  "DSC00999.jpg","DSC01000.jpg","DSC01005.jpg","DSC01008.jpg","DSC01014.jpg",
+  "DSC01017.jpg","DSC01022.jpg","DSC01029.jpg","DSC01030.jpg","DSC01035.jpg",
+  "DSC01038.jpg","DSC01041.jpg","DSC01044.jpg","DSC01050.jpg","DSC01053.jpg",
+  "DSC01059.jpg","DSC01071.jpg","DSC01074.jpg","DSC01080.jpg","DSC01083.jpg",
+  "DSC01089.jpg","DSC01092.jpg","DSC01095.jpg","DSC01101.jpg","DSC01104.jpg",
+  "DSC01110.jpg","DSC01113.jpg","DSC01119.jpg","DSC01125.jpg","DSC01131.jpg",
+  "DSC01140.jpg","DSC01143.jpg","DSC01146.jpg","DSC01149.jpg","DSC01161.jpg",
+  "DSC01163.jpg","DSC01167.jpg","DSC01170.jpg","DSC01173.jpg","DSC01176.jpg",
+  "DSC01179.jpg","DSC01182.jpg","DSC01185.jpg","DSC01188.jpg","DSC01191.jpg",
+  "DSC01200.jpg","DSC01203.jpg","DSC01206.jpg","DSC01212.jpg","DSC01215.jpg",
+  "DSC01221.jpg","DSC01230.jpg","DSC01233.jpg","DSC01239.jpg","DSC01245.jpg",
+  "DSC01251.jpg","DSC01260.jpg","DSC01266.jpg","DSC01269.jpg",
+];
+const MOMENTS: Array<{ src: string; alt: string; caption: string }> = [
+  ...NAMED_MOMENTS.map((m) => ({
+    src: `${momentsBase}${encodeURIComponent(m.file)}`,
+    alt: m.alt,
+    caption: m.caption,
+  })),
+  ...EXTRA_MOMENT_FILES.map((file) => ({
+    src: `${momentsBase}${encodeURIComponent(file)}`,
+    alt: "Dungeon Series past event photo",
+    caption: DEFAULT_MOMENT_CAPTION,
+  })),
+];
+
 
 const baseUrl = import.meta.env.BASE_URL ?? "/";
 
@@ -353,6 +391,9 @@ function HomePage() {
                 <img
                   src={resolveImage(artist.image)}
                   alt={artist.name}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                   className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
@@ -382,6 +423,17 @@ function HomePage() {
                   <img
                     src={resolveImage(artist.image)}
                     alt={artist.name}
+                    loading="lazy"
+                    decoding="async"
+                    onError={(e) => {
+                      const img = e.currentTarget;
+                      if (!img.dataset.retried) {
+                        img.dataset.retried = "1";
+                        const url = new URL(img.src, window.location.href);
+                        url.searchParams.set("r", "1");
+                        img.src = url.toString();
+                      }
+                    }}
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                 </div>

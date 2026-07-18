@@ -144,6 +144,18 @@ function EventsPage() {
                   <img
                     src={resolveImage(flyer.src)}
                     alt={flyer.alt}
+                    loading={i < 2 ? "eager" : "lazy"}
+                    fetchPriority={i < 2 ? "high" : "auto"}
+                    decoding="async"
+                    onError={(e) => {
+                      const img = e.currentTarget;
+                      if (!img.dataset.retried) {
+                        img.dataset.retried = "1";
+                        const url = new URL(img.src, window.location.href);
+                        url.searchParams.set("r", "1");
+                        img.src = url.toString();
+                      }
+                    }}
                     className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
