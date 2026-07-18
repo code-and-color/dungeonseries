@@ -22,7 +22,7 @@ const clip3 = { url: `${mediaBase}clip3.mp4` };
 // and append an entry below. To give a photo a real caption (like an artist
 // name), add it near the top of the list with a `caption` string.
 const momentsBase = `${import.meta.env.BASE_URL ?? "/"}moments/`;
-const DEFAULT_MOMENT_CAPTION = "DUNGEON SERIES · PAST EVENT";
+const DEFAULT_MOMENT_CAPTION = "";
 const NAMED_MOMENTS: Array<{ file: string; alt: string; caption: string }> = [
   { file: "maestro.png", alt: "Steve Maestro on the decks", caption: "STEVE MAESTRO" },
   { file: "bracken.png", alt: "Dion Bracken in the booth", caption: "DION BRACKEN" },
