@@ -229,32 +229,31 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Spotlight CTA — pulsing crimson ring on the splash page */
-.splight-cta {
+/* Spotlight CTA — soft pulsing crimson ring on the splash page */
+.spotlight-cta {
   position: relative;
   z-index: 1;
 }
-.splight-cta::before {
+.spotlight-cta::before {
   content: "";
   position: absolute;
-  inset: -4px;
+  inset: -3px;
   border-radius: inherit;
-  background: conic-gradient(from 0deg, #ff5540, #ff9e8a, #ff5540, #ff9e8a, #ff5540);
-  animation: spotlight-spin 3s linear infinite;
+  background: rgba(255, 85, 64, 0.6);
+  filter: blur(12px);
+  animation: spotlight-pulse 2.5s ease-in-out infinite;
   z-index: -1;
-  opacity: 0.75;
-  filter: blur(8px);
 }
-.splight-cta::after {
+.spotlight-cta::after {
   content: "";
   position: absolute;
-  inset: -2px;
+  inset: -1px;
   border-radius: inherit;
-  background: conic-gradient(from 0deg, #ff5540, #ff9e8a, #ff5540, #ff9e8a, #ff5540);
-  animation: spotlight-spin 3s linear infinite;
+  border: 1px solid rgba(255, 85, 64, 0.5);
+  animation: spotlight-pulse 2.5s ease-in-out infinite;
   z-index: -1;
 }
-@keyframes spotlight-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+@keyframes spotlight-pulse {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.03); }
 }
