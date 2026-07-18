@@ -193,12 +193,13 @@ function Splash({ onEnter, ticketUrl }: { onEnter: () => void; ticketUrl: string
           <span className="h-px w-10 bg-on-background/30" />
         </div>
 
-        <h1 className="font-headline-xl text-headline-lg md:text-headline-xl text-on-background uppercase leading-[0.9] mb-5">
-          AUGUST 9 · CHICAGO
+        <h1 className="font-headline-xl text-headline-lg md:text-headline-xl text-on-background uppercase leading-[0.9] mb-6">
+          AUGUST 9<br />CHICAGO
         </h1>
-        <p className="text-on-background/55 font-label-caps text-[11px] md:text-xs tracking-[0.45em] mb-12">
+        <p className="text-on-background/60 font-body-md mb-12 tracking-widest">
           8:00 AM — 8:00 PM
         </p>
+
 
         {/* CTA */}
         <a
