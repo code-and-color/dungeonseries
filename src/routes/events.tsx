@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { events, resolveImage, VENDOR_PACKET_URL } from "@/data/events";
+import { events, resolveImage, VENDOR_PACKET_URL, SCHEDULE } from "@/data/events";
+import { ScheduleTable } from "@/components/site/ScheduleTable";
 
 const festival = events.find((e) => e.featured) ?? events[0];
 

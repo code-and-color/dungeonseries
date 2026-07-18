@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { startBackgroundMusic } from "@/components/site/BackgroundMusic";
-import { events, VENDOR_PACKET_URL, resolveImage } from "@/data/events";
+import { events, VENDOR_PACKET_URL, resolveImage, SCHEDULE } from "@/data/events";
+import { ScheduleTable } from "@/components/site/ScheduleTable";
 import {
   Carousel,
   CarouselContent,
