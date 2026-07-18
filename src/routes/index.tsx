@@ -1,9 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { startBackgroundMusic } from "@/components/site/BackgroundMusic";
-import { events, VENDOR_PACKET_URL, resolveImage, SCHEDULE } from "@/data/events";
+import { events, resolveImage, SCHEDULE } from "@/data/events";
 import { ScheduleTable } from "@/components/site/ScheduleTable";
 import {
   Carousel,
@@ -488,14 +488,12 @@ function HomePage() {
                 >
                   BUY TICKETS
                 </a>
-                <a
-                  href={VENDOR_PACKET_URL}
-                  target="_blank"
-                  rel="noreferrer"
+                <Link
+                  to="/vendors"
                   className="border border-white/20 text-white px-8 py-4 font-label-caps text-label-caps hover:bg-white/5 transition-all"
                 >
                   BECOME A VENDOR
-                </a>
+                </Link>
               </div>
             </div>
           </div>
