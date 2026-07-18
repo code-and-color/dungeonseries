@@ -93,7 +93,7 @@ export const Route = createFileRoute("/")({
 
 // ─── Countdown ──────────────────────────────────────────────────────────────
 function useCountdown(targetIso: string) {
-  const target = new Date(`${targetIso}T08:00:00-05:00`).getTime();
+  const target = new Date(`${targetIso}T09:00:00-05:00`).getTime();
   const [now, setNow] = useState(() => Date.now());
   useEffect(() => {
     const id = setInterval(() => setNow(Date.now()), 1000);
