@@ -138,7 +138,7 @@ const FAQS = [
   },
 ];
 
-function Splash({ onEnter }: { onEnter: () => void }) {
+function Splash({ onEnter, ticketUrl }: { onEnter: () => void; ticketUrl: string }) {
   return (
     <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,85,64,0.25),transparent_65%)] pointer-events-none" />
@@ -155,14 +155,26 @@ function Splash({ onEnter }: { onEnter: () => void }) {
         <h1 className="font-headline-xl text-headline-lg md:text-headline-xl text-on-background uppercase leading-[0.9] mb-6">
           AUGUST 9<br />CHICAGO
         </h1>
-        <p className="text-on-background/60 font-body-md mb-12 tracking-widest">
+        <p className="text-on-background/60 font-body-md mb-10 tracking-widest">
           8:00 AM — 8:00 PM
         </p>
+
+        {/* Spotlight CTA */}
+        <a
+          href={ticketUrl}
+          target="_blank"
+          rel="noreferrer"
+          onClick={onEnter}
+          className="spotlight-cta bg-primary-container text-white px-16 py-5 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95 tracking-[0.4em] mb-8"
+        >
+          GET TICKETS
+        </a>
+
         <button
           onClick={onEnter}
-          className="bg-primary-container text-white px-16 py-5 font-label-caps text-label-caps hover:brightness-110 transition-all active:scale-95 neon-glow tracking-[0.4em]"
+          className="text-on-background/50 hover:text-on-background font-label-caps text-[11px] tracking-[0.3em] underline underline-offset-4 transition-colors"
         >
-          ENTER
+          ENTER SITE
         </button>
       </div>
     </div>
@@ -185,7 +197,7 @@ function HomePage() {
 
   return (
     <SiteLayout>
-      {splashOpen && <Splash onEnter={dismissSplash} />}
+      {splashOpen && <Splash onEnter={dismissSplash} ticketUrl={festival.ticketUrl} />}
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden border-b border-white/5">
         <div className="absolute inset-0 z-0">
