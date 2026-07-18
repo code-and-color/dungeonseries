@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import Autoplay from "embla-carousel-autoplay";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { startBackgroundMusic } from "@/components/site/BackgroundMusic";
 import { events, VENDOR_PACKET_URL, resolveImage, SCHEDULE } from "@/data/events";
@@ -21,7 +22,7 @@ const clip3 = { url: `${mediaBase}clip3.mp4` };
 // and append an entry below. To give a photo a real caption (like an artist
 // name), add it near the top of the list with a `caption` string.
 const momentsBase = `${import.meta.env.BASE_URL ?? "/"}moments/`;
-const DEFAULT_MOMENT_CAPTION = "DUNGEON SERIES · PAST EVENT";
+const DEFAULT_MOMENT_CAPTION = "";
 const NAMED_MOMENTS: Array<{ file: string; alt: string; caption: string }> = [
   { file: "maestro.png", alt: "Steve Maestro on the decks", caption: "STEVE MAESTRO" },
   { file: "bracken.png", alt: "Dion Bracken in the booth", caption: "DION BRACKEN" },
@@ -565,6 +566,13 @@ function HomePage() {
           </div>
           <Carousel
             opts={{ align: "start", loop: true }}
+            plugins={[
+              Autoplay({
+                delay: 3000,
+                stopOnInteraction: false,
+                stopOnMouseEnter: true,
+              }),
+            ]}
             className="max-w-5xl mx-auto"
           >
             <CarouselContent className="-ml-4">
@@ -580,10 +588,14 @@ function HomePage() {
                       loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                    <figcaption className="absolute bottom-0 left-0 right-0 p-4 text-center font-label-caps text-label-caps tracking-[0.3em] text-on-background">
-                      {m.caption}
-                    </figcaption>
+                    {m.caption && (
+                      <>
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                        <figcaption className="absolute bottom-0 left-0 right-0 p-4 text-center font-label-caps text-label-caps tracking-[0.3em] text-on-background">
+                          {m.caption}
+                        </figcaption>
+                      </>
+                    )}
                   </figure>
                 </CarouselItem>
               ))}
@@ -592,7 +604,7 @@ function HomePage() {
             <CarouselNext className="hidden md:flex -right-4 bg-background/80 border-white/20 text-on-background hover:bg-primary-container hover:text-white" />
           </Carousel>
           <p className="text-center text-on-background/40 text-body-md mt-6 italic">
-            Swipe to see more.
+            Auto-scrolling · hover to pause.
           </p>
         </div>
       </section>
