@@ -488,14 +488,12 @@ function HomePage() {
                 >
                   BUY TICKETS
                 </a>
-                <a
-                  href={VENDOR_PACKET_URL}
-                  target="_blank"
-                  rel="noreferrer"
+                <Link
+                  to="/vendors"
                   className="border border-white/20 text-white px-8 py-4 font-label-caps text-label-caps hover:bg-white/5 transition-all"
                 >
                   BECOME A VENDOR
-                </a>
+                </Link>
               </div>
             </div>
           </div>
