@@ -1,45 +1,33 @@
-## Plan
+## Fix image loading + Moments carousel
 
-Add a simple time/artist schedule for the August 9 festival to both pages. Keep the data centralized so the client can update it later without touching components.
+### 1. Support-artist flyers loading intermittently
 
-### Changes
+Symptom: some support flyer tiles (Bracken, Cosey, Hunt, Koko) render as empty dark squares even though the files exist in `public/events/`. Cause: browsers throttle many simultaneous image requests to the same origin on first paint, and the current `<img>` tags don't hint at priority/decoding.
 
-1. **Centralize schedule data in `src/data/events.ts`**
-   - Add a `SCHEDULE` array with `{ time, artist }` entries:
-     - 10:00 AM – 11:00 AM → Stephen Cosey
-     - 11:00 AM – 12:00 PM → CntrlZora
-     - 12:00 PM – 1:00 PM → Maestro
-     - 1:00 PM – 2:00 PM → Steve Maxwell
-     - 2:00 PM – 3:00 PM → Bracken
-     - 3:00 PM – 4:00 PM → Gene Hunt
-     - 4:00 PM – 5:00 PM → Duane Powell
-     - 5:00 PM – 6:30 PM → Osunlade
-     - 6:30 PM – 8:00 PM → Jaime 3:26
-   - Export it so both pages can import it.
+Fix in `src/routes/index.tsx` (and mirror in `src/routes/events.tsx` where the same lineup grid renders):
+- Add `loading="lazy"` and `decoding="async"` to the support-flyer `<img>` tags so the browser can stagger fetches without blocking paint.
+- Add `loading="eager"` + `fetchPriority="high"` to the two headliner images so they win first.
+- Add `onError` fallback that retries once with a cache-buster to recover from any transient hiccup.
 
-2. **Create a reusable `ScheduleTable` component**
-   - New file: `src/components/site/ScheduleTable.tsx`
-   - Props: `items`, optional `compact` boolean, optional `highlightHeadliners` array.
-   - Compact mode hides the section header and uses tighter padding.
-   - Full mode shows the full-width table with the existing glass-panel styling.
+### 2. Moments carousel showing empty
 
-3. **Add compact schedule to `src/routes/index.tsx`**
-   - Place it after the lineup section and before the flyer/video gallery.
-   - Heading: "SET TIMES" / "FESTIVAL SCHEDULE"
-   - Show all times/artists in a condensed table.
+The Moments array only references `maestro.png` and `bracken.png`, so the carousel only ever has two slides. Meanwhile `public/moments/` already contains ~90 real event photos (DSC00788.jpg … DSC01269.jpg, crowd-1.jpg, etc.). Nothing about captions is blocking render — the array is just tiny.
 
-4. **Add full schedule to `src/routes/events.tsx`**
-   - Place it after the festival hero details and before the flyer gallery.
-   - Heading: "FESTIVAL SCHEDULE" / "AUGUST 9 SET TIMES"
-   - Use the full-width table.
+Fix in `src/routes/index.tsx`:
+- Rebuild the `MOMENTS` array to include the real photos from `public/moments/`.
+- Keep the two named/captioned entries at the front:
+  - `maestro.png` → "STEVE MAESTRO"
+  - `bracken.png` → "DION BRACKEN"
+- Append the rest of the `DSC*.jpg` + `crowd-1.jpg` + `image000001.JPG` with a generic caption ("DUNGEON SERIES · PAST EVENT") so every slide has a caption and the carousel is populated.
+- Add a short comment above the array explaining how the client can drop in new files and add/rename captions later.
 
-### Visual approach
+### 3. Verify
 
-- Use the existing glass-panel + label-caps styling.
-- Time column in `text-primary-container`, artist in `text-on-background`.
-- No artist links for now (matches "simple time/artist table" request).
+- Reload the home route in the preview.
+- Confirm all 10 support flyer tiles render.
+- Confirm the Moments carousel scrolls through many slides.
 
 ### Out of scope
 
-- No TicketFalcon links per set time.
-- No schedule editing UI — the client will edit `src/data/events.ts` directly.
+- No visual/style changes to the lineup or carousel components.
+- No changes to the schedule, splash, or other sections.
