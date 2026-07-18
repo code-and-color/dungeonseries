@@ -381,16 +381,11 @@ function HomePage() {
                   <img
                     src={resolveImage(artist.image)}
                     alt={artist.name}
-                    className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-3 text-center">
-                    <span className="font-headline-md text-[14px] md:text-[16px] uppercase text-on-background">
-                      {artist.name}
-                    </span>
-                  </div>
                 </div>
               ))}
+
             </div>
             <p className="text-center text-on-background/40 text-body-md mt-8 italic">
               More artists announced in waves. Follow @dungeonseries for drops.
