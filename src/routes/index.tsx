@@ -227,7 +227,7 @@ function Splash({ onEnter, ticketUrl }: { onEnter: () => void; ticketUrl: string
         <div className="flex items-center gap-4 mb-6">
           <span className="h-px w-10 bg-on-background/30" />
           <p className="font-label-caps text-[11px] md:text-xs text-primary-container tracking-[0.65em]">
-            DUNGEON SERIES
+            DUNGEON SERIES OUTSIDE
           </p>
           <span className="h-px w-10 bg-on-background/30" />
         </div>

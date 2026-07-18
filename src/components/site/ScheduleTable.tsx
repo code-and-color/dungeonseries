@@ -28,14 +28,14 @@ export function ScheduleTable({
             </p>
           )}
           {title && (
-            <h2 className="font-headline-lg text-headline-md md:text-headline-lg text-on-background uppercase">
+            <h2 className="font-headline-lg text-headline-lg md:text-headline-xl text-on-background uppercase">
               {title}
             </h2>
           )}
         </div>
       )}
       {compact && title && (
-        <h3 className="font-label-caps text-label-caps text-primary-container tracking-[0.3em] mb-4 text-center">
+        <h3 className="font-headline-md text-headline-md md:text-headline-lg text-on-background uppercase tracking-[0.15em] mb-6 text-center">
           {title}
         </h3>
       )}
