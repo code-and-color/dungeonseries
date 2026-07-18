@@ -72,15 +72,10 @@ function ContactPage() {
                 <span className="material-symbols-outlined text-[18px]">photo_camera</span>
                 Instagram — @dungeonseries
               </a>
-              <a
-                href="https://www.facebook.com/ty.harvey.58"
-                target="_blank"
-                rel="noreferrer"
-                className="font-body-md text-body-md text-white hover:text-primary transition-colors inline-flex items-center gap-2"
-              >
+              <span className="font-body-md text-body-md text-on-surface-variant inline-flex items-center gap-2">
                 <span className="material-symbols-outlined text-[18px]">thumb_up</span>
                 Facebook — Ty Harvey
-              </a>
+              </span>
             </div>
           </div>
         </div>
