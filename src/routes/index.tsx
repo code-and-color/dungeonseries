@@ -171,14 +171,25 @@ function Splash({ onEnter, ticketUrl }: { onEnter: () => void; ticketUrl: string
           <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden bg-black shadow-[0_0_80px_rgba(255,85,64,0.45)]">
             <video
               src={`${mediaBase}logo-spotlight.mp4`}
-              poster={`${baseUrl}og-image.png`}
               autoPlay
               loop
               muted
+              
               playsInline
+              disablePictureInPicture
+              disableRemotePlayback
+              preload="auto"
               aria-label="Dungeon Series"
-              className="w-full h-full object-cover scale-[1.02]"
+              ref={(el) => {
+                if (el) {
+                  el.muted = true;
+                  const p = el.play();
+                  if (p && typeof p.catch === "function") p.catch(() => {});
+                }
+              }}
+              className="w-full h-full object-cover scale-[1.02] pointer-events-none"
             />
+
             {/* Subtle inner shading */}
             <div className="absolute inset-0 rounded-full shadow-[inset_0_0_60px_rgba(0,0,0,0.55)] pointer-events-none" />
           </div>
