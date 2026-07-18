@@ -236,7 +236,7 @@ function Splash({ onEnter, ticketUrl }: { onEnter: () => void; ticketUrl: string
           AUGUST 9<br />CHICAGO
         </h1>
         <p className="text-on-background/60 font-body-md mb-12 tracking-widest">
-          8:00 AM — 8:00 PM
+          GATES 9:00 AM · MUSIC 10:00 AM — 8:00 PM
         </p>
 
 
