@@ -525,6 +525,9 @@ function HomePage() {
             preload="auto"
           />
         </div>
+        <p className="text-center font-label-caps text-[12px] tracking-[0.3em] text-on-background/60">
+          RON CARROLL
+        </p>
       </section>
 
       {/* ── MOMENTS ──────────────────────────────────────────────────────── */}
