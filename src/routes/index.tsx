@@ -144,10 +144,15 @@ function Splash({ onEnter, ticketUrl }: { onEnter: () => void; ticketUrl: string
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,85,64,0.25),transparent_65%)] pointer-events-none" />
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none [background-image:repeating-linear-gradient(0deg,#fff_0,#fff_1px,transparent_1px,transparent_3px)]" />
       <div className="relative z-10 flex flex-col items-center text-center px-6 animate-[fadeIn_0.8s_ease-out]">
-        <img
-          src={`${baseUrl}og-image.png`}
-          alt="Dungeon Series"
-          className="w-40 md:w-56 mb-10 drop-shadow-[0_0_40px_rgba(255,85,64,0.5)]"
+        <video
+          src={`${mediaBase}logo-spotlight.mp4`}
+          poster={`${baseUrl}og-image.png`}
+          autoPlay
+          loop
+          muted
+          playsInline
+          aria-label="Dungeon Series"
+          className="w-56 md:w-80 mb-10 drop-shadow-[0_0_60px_rgba(255,85,64,0.6)]"
         />
         <p className="font-label-caps text-label-caps text-primary-container tracking-[0.5em] mb-4">
           DUNGEON SERIES
