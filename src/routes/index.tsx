@@ -509,7 +509,7 @@ function HomePage() {
             INSIDE ROOM 43
           </p>
           <h2 className="font-headline-lg text-headline-md md:text-headline-lg text-on-background uppercase">
-            A LOOK AT THE FLOOR
+            WE MISS YOU
           </h2>
         </div>
         <div className="glass-panel overflow-hidden aspect-[9/16] sm:aspect-video max-w-3xl mx-auto mb-4 bg-black">
