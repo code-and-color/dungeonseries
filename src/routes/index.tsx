@@ -174,7 +174,7 @@ function Splash({ onEnter, ticketUrl }: { onEnter: () => void; ticketUrl: string
               autoPlay
               loop
               muted
-              defaultMuted
+              
               playsInline
               disablePictureInPicture
               disableRemotePlayback
