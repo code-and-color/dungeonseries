@@ -228,3 +228,33 @@
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* Spotlight CTA — pulsing crimson ring on the splash page */
+.splight-cta {
+  position: relative;
+  z-index: 1;
+}
+.splight-cta::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, #ff5540, #ff9e8a, #ff5540, #ff9e8a, #ff5540);
+  animation: spotlight-spin 3s linear infinite;
+  z-index: -1;
+  opacity: 0.75;
+  filter: blur(8px);
+}
+.splight-cta::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, #ff5540, #ff9e8a, #ff5540, #ff9e8a, #ff5540);
+  animation: spotlight-spin 3s linear infinite;
+  z-index: -1;
+}
+@keyframes spotlight-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
