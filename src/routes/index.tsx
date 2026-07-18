@@ -197,7 +197,7 @@ function HomePage() {
 
   return (
     <SiteLayout>
-      {splashOpen && <Splash onEnter={dismissSplash} />}
+      {splashOpen && <Splash onEnter={dismissSplash} ticketUrl={festival.ticketUrl} />}
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden border-b border-white/5">
         <div className="absolute inset-0 z-0">
