@@ -4,7 +4,7 @@ import { VENDOR_PACKET_URL } from "@/data/events";
 
 const TITLE = "Festival Vendors · Dungeon Series Chicago";
 const DESC =
-  "Apply to vend at the Dungeon Series Festival. Download the vendor packet for booth pricing, load-in details, and application instructions.";
+  "Apply to vend at Dungeon Series Outside. Download the vendor packet for booth pricing, load-in details, and application instructions.";
 
 export const Route = createFileRoute("/vendors")({
   head: () => ({
@@ -40,7 +40,7 @@ function VendorsPage() {
             <span className="text-primary-container">DUNGEON</span>
           </h1>
           <p className="font-body-lg text-body-lg text-secondary max-w-2xl mt-4">
-            Join us at Room 43 for the Dungeon Series Festival. We host local DJs to curate a unique atmosphere. Download the vendor packet to join in and promote 
+            Join us at Room 43 for Dungeon Series Outside. We host local DJs to curate a unique atmosphere. Download the vendor packet to join in and promote 
             your business with us.
           </p>
         </section>
