@@ -160,11 +160,6 @@ function EventsPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
-                    {i < 2 && (
-                      <span className="font-label-caps text-[10px] tracking-[0.25em] text-primary-container mb-1 block">
-                        HEADLINER
-                      </span>
-                    )}
                     <span className="font-headline-md text-[16px] uppercase text-on-background">
                       {flyer.label}
                     </span>

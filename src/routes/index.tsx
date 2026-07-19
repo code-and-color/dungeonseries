@@ -128,7 +128,7 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
 type Artist = { name: string; image: string; headliner?: boolean };
 
 const HEADLINERS: Artist[] = [
-  { name: "JAMIE 3:26", image: "Jamie326_Elevator.png", headliner: true },
+  { name: "JAMIE 3:26", image: "Jamie326_BW.png", headliner: true },
   { name: "OSUNLADE", image: "Osunlade.jpeg", headliner: true },
 ];
 
@@ -137,9 +137,7 @@ const SUPPORT: Artist[] = [
   { name: "BREATHLEZZ", image: "Dungeon Series Festival - Breathlezz.png" },
   { name: "COSEY", image: "Dungeon Series Festival - Cosey.png" },
   { name: "CTRLZORA", image: "Dungeon Series Festival - CTRLZORA.png" },
-  { name: "HARDISON", image: "Dungeon Series Festival - Hardison.png" },
   { name: "HUNT", image: "Dungeon Series Festival - Hunt (1).png" },
-  { name: "KOKO", image: "Dungeon Series Festival - Koko (1).png" },
   { name: "MAESTRO", image: "Dungeon Series Festival - Maestro.png" },
   { name: "MAXWELL", image: "Dungeon Series Festival - Maxwell.png" },
   { name: "POWELL", image: "Dungeon Series Festival - Powell.png" },
@@ -170,7 +168,7 @@ const FAQS = [
   },
   {
     q: "Can I bring outside food or drinks?",
-    a: "No outside food, drinks, or coolers. Food trucks and full bars will be on-site.",
+    a: "Outside food is welcome. No grills and no glass bottles. Tents are allowed.",
   },
   {
     q: "How do I become a vendor or sponsor?",
@@ -399,9 +397,6 @@ function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
-                  <span className="font-label-caps text-[10px] tracking-[0.25em] text-primary-container mb-1 block">
-                    HEADLINER
-                  </span>
                   <span className="font-headline-md text-[18px] uppercase text-on-background">
                     {artist.name}
                   </span>
