@@ -4,7 +4,7 @@ import { VENDOR_PACKET_URL } from "@/data/events";
 
 const TITLE = "Festival Vendors · Dungeon Series Chicago";
 const DESC =
-  "Apply to vend at the Dungeon Series Festival. Download the vendor packet for booth pricing, load-in details, and application instructions.";
+  "Apply to vend at Dungeon Series Outside. Download the vendor packet for booth pricing, load-in details, and application instructions.";
 
 export const Route = createFileRoute("/vendors")({
   head: () => ({

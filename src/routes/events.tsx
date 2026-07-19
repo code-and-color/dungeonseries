@@ -5,9 +5,9 @@ import { ScheduleTable } from "@/components/site/ScheduleTable";
 
 const festival = events.find((e) => e.featured) ?? events[0];
 
-const EVENTS_TITLE = "Dungeon Series Festival · August 9, 2026 · Chicago";
+const EVENTS_TITLE = "Dungeon Series Outside · August 9, 2026 · Chicago";
 const EVENTS_DESC =
-  "The Dungeon Series Festival returns August 9, 2026 in Chicago. One day. One destination. Get tickets, view the lineup, and join us.";
+  "Dungeon Series Outside returns August 9, 2026 in Chicago. One day. One destination. Get tickets, view the lineup, and join us.";
 
 export const Route = createFileRoute("/events")({
   head: () => ({
@@ -144,6 +144,18 @@ function EventsPage() {
                   <img
                     src={resolveImage(flyer.src)}
                     alt={flyer.alt}
+                    loading={i < 2 ? "eager" : "lazy"}
+                    fetchPriority={i < 2 ? "high" : "auto"}
+                    decoding="async"
+                    onError={(e) => {
+                      const img = e.currentTarget;
+                      if (!img.dataset.retried) {
+                        img.dataset.retried = "1";
+                        const url = new URL(img.src, window.location.href);
+                        url.searchParams.set("r", "1");
+                        img.src = url.toString();
+                      }
+                    }}
                     className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />

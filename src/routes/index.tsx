@@ -1,8 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import Autoplay from "embla-carousel-autoplay";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { startBackgroundMusic } from "@/components/site/BackgroundMusic";
-import { events, VENDOR_PACKET_URL, resolveImage, SCHEDULE } from "@/data/events";
+import { events, resolveImage, SCHEDULE } from "@/data/events";
 import { ScheduleTable } from "@/components/site/ScheduleTable";
 import {
   Carousel,
@@ -18,18 +19,56 @@ const clip2 = { url: `${mediaBase}clip2.mp4` };
 const clip3 = { url: `${mediaBase}clip3.mp4` };
 
 // Add more moments here anytime — just drop the image in `public/moments/`
-// and append an entry below.
+// and append an entry below. To give a photo a real caption (like an artist
+// name), add it near the top of the list with a `caption` string.
 const momentsBase = `${import.meta.env.BASE_URL ?? "/"}moments/`;
-const MOMENTS: Array<{ src: string; alt: string; caption: string }> = [
-  { src: `${momentsBase}maestro.png`, alt: "Steve Maestro on the decks", caption: "STEVE MAESTRO" },
-  { src: `${momentsBase}bracken.png`, alt: "Dion Bracken in the booth", caption: "DION BRACKEN" },
+const DEFAULT_MOMENT_CAPTION = "";
+const NAMED_MOMENTS: Array<{ file: string; alt: string; caption: string }> = [
+  { file: "maestro.png", alt: "Steve Maestro on the decks", caption: "STEVE MAESTRO" },
+  { file: "bracken.png", alt: "Dion Bracken in the booth", caption: "DION BRACKEN" },
 ];
+const EXTRA_MOMENT_FILES: string[] = [
+  "crowd-1.jpg",
+  "image000001.JPG",
+  "740628622_26844506721895336_852612985528828770_n.jpg",
+  "DSC00788.jpg","DSC00798.jpg","DSC00805.jpg","DSC00808.jpg","DSC00811.jpg",
+  "DSC00814.jpg","DSC00820.jpg","DSC00829.jpg","DSC00834.jpg","DSC00835.jpg",
+  "DSC00838.jpg","DSC00850.jpg","DSC00854.jpg","DSC00861.jpg","DSC00862.jpg",
+  "DSC00867.jpg","DSC00871.jpg","DSC00891.jpg","DSC00893.jpg","DSC00954.jpg",
+  "DSC00957.jpg","DSC00960.jpg","DSC00961.jpg","DSC00969.jpg","DSC00975.jpg",
+  "DSC00978.jpg","DSC00984.jpg","DSC00990.jpg","DSC00993.jpg","DSC00996.jpg",
+  "DSC00999.jpg","DSC01000.jpg","DSC01005.jpg","DSC01008.jpg","DSC01014.jpg",
+  "DSC01017.jpg","DSC01022.jpg","DSC01029.jpg","DSC01030.jpg","DSC01035.jpg",
+  "DSC01038.jpg","DSC01041.jpg","DSC01044.jpg","DSC01050.jpg","DSC01053.jpg",
+  "DSC01059.jpg","DSC01071.jpg","DSC01074.jpg","DSC01080.jpg","DSC01083.jpg",
+  "DSC01089.jpg","DSC01092.jpg","DSC01095.jpg","DSC01101.jpg","DSC01104.jpg",
+  "DSC01110.jpg","DSC01113.jpg","DSC01119.jpg","DSC01125.jpg","DSC01131.jpg",
+  "DSC01140.jpg","DSC01143.jpg","DSC01146.jpg","DSC01149.jpg","DSC01161.jpg",
+  "DSC01163.jpg","DSC01167.jpg","DSC01170.jpg","DSC01173.jpg","DSC01176.jpg",
+  "DSC01179.jpg","DSC01182.jpg","DSC01185.jpg","DSC01188.jpg","DSC01191.jpg",
+  "DSC01200.jpg","DSC01203.jpg","DSC01206.jpg","DSC01212.jpg","DSC01215.jpg",
+  "DSC01221.jpg","DSC01230.jpg","DSC01233.jpg","DSC01239.jpg","DSC01245.jpg",
+  "DSC01251.jpg","DSC01260.jpg","DSC01266.jpg","DSC01269.jpg",
+];
+const MOMENTS: Array<{ src: string; alt: string; caption: string }> = [
+  ...NAMED_MOMENTS.map((m) => ({
+    src: `${momentsBase}${encodeURIComponent(m.file)}`,
+    alt: m.alt,
+    caption: m.caption,
+  })),
+  ...EXTRA_MOMENT_FILES.map((file) => ({
+    src: `${momentsBase}${encodeURIComponent(file)}`,
+    alt: "Dungeon Series past event photo",
+    caption: DEFAULT_MOMENT_CAPTION,
+  })),
+];
+
 
 const baseUrl = import.meta.env.BASE_URL ?? "/";
 
-const HOME_TITLE = "Dungeon Series Festival · August 9, 2026 · Chicago";
+const HOME_TITLE = "Dungeon Series Outside · August 9, 2026 · Chicago";
 const HOME_DESC =
-  "The Dungeon Series Festival returns August 9, 2026 in Chicago. One day. One destination. Get tickets, view the lineup, and become a vendor.";
+  "Dungeon Series Outside returns August 9, 2026 in Chicago. One day. One destination. Get tickets, view the lineup, and become a vendor.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -54,7 +93,7 @@ export const Route = createFileRoute("/")({
 
 // ─── Countdown ──────────────────────────────────────────────────────────────
 function useCountdown(targetIso: string) {
-  const target = new Date(`${targetIso}T08:00:00-05:00`).getTime();
+  const target = new Date(`${targetIso}T09:00:00-05:00`).getTime();
   const [now, setNow] = useState(() => Date.now());
   useEffect(() => {
     const id = setInterval(() => setNow(Date.now()), 1000);
@@ -119,7 +158,7 @@ const FAQS = [
   },
   {
     q: "What time do gates open?",
-    a: "Gates open at 2:00 PM. Music runs until late night. Arrive early to skip the line.",
+    a: "Gates open at 9:00 AM. Music starts at 10:00 AM and runs until 8:00 PM. Arrive early to skip the line.",
   },
   {
     q: "How do I receive my tickets?",
@@ -188,7 +227,7 @@ function Splash({ onEnter, ticketUrl }: { onEnter: () => void; ticketUrl: string
         <div className="flex items-center gap-4 mb-6">
           <span className="h-px w-10 bg-on-background/30" />
           <p className="font-label-caps text-[11px] md:text-xs text-primary-container tracking-[0.65em]">
-            DUNGEON SERIES
+            DUNGEON SERIES OUTSIDE
           </p>
           <span className="h-px w-10 bg-on-background/30" />
         </div>
@@ -197,7 +236,7 @@ function Splash({ onEnter, ticketUrl }: { onEnter: () => void; ticketUrl: string
           AUGUST 9<br />CHICAGO
         </h1>
         <p className="text-on-background/60 font-body-md mb-12 tracking-widest">
-          8:00 AM — 8:00 PM
+          GATES 9:00 AM · MUSIC 10:00 AM — 8:00 PM
         </p>
 
 
@@ -247,7 +286,7 @@ function HomePage() {
         <div className="absolute inset-0 z-0">
           <img
             className="w-full h-full object-cover grayscale-[0.5] brightness-[0.28]"
-            alt="Dungeon Series Festival crowd"
+            alt="Dungeon Series Outside crowd"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3rVvJQ07MtxeyYSP5N1vYZ029Zng8Wj2yKlHhCdrYqDjfUUwdBBELXoS9vHHFmY54nCJp-Nf8LXpLsASJMfgC7tMmEoDb57G5oaTJvsc2dH04lxyR0OQHT8ZOZDudqarfWLRiyylU63uai81h065Ghd5G61IC_W5nXbnqr_Oyzx0YqscjQojFUv9DOfXdKmXy2XU83qtrj4MkGPWgCAguUtSileqkNf5iJToJZCvfh6ESmG0X7bb7Zr2Mk9j0V7Epn81XK6UAZRRJ"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
@@ -261,7 +300,11 @@ function HomePage() {
             className="mx-auto w-28 md:w-36 mb-8 drop-shadow-[0_0_30px_rgba(255,85,64,0.35)]"
           />
           <p className="font-label-caps text-label-caps text-primary-container tracking-[0.4em] mb-6">
+<<<<<<< HEAD
             DUNGEON SERIES LIVE OUTSIDE
+=======
+            DUNGEON SERIES OUTSIDE
+>>>>>>> 113a1e63a284f0df1e3da31dd76abb7ff91f90be
           </p>
           <h1 className="font-headline-xl text-headline-lg md:text-headline-xl text-on-background leading-[0.9] uppercase mb-8">
             DUNGEON SERIES<br />LIVE OUTSIDE.
@@ -353,6 +396,9 @@ function HomePage() {
                 <img
                   src={resolveImage(artist.image)}
                   alt={artist.name}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                   className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
@@ -382,6 +428,17 @@ function HomePage() {
                   <img
                     src={resolveImage(artist.image)}
                     alt={artist.name}
+                    loading="lazy"
+                    decoding="async"
+                    onError={(e) => {
+                      const img = e.currentTarget;
+                      if (!img.dataset.retried) {
+                        img.dataset.retried = "1";
+                        const url = new URL(img.src, window.location.href);
+                        url.searchParams.set("r", "1");
+                        img.src = url.toString();
+                      }
+                    }}
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                 </div>
@@ -435,14 +492,12 @@ function HomePage() {
                 >
                   BUY TICKETS
                 </a>
-                <a
-                  href={VENDOR_PACKET_URL}
-                  target="_blank"
-                  rel="noreferrer"
+                <Link
+                  to="/vendors"
                   className="border border-white/20 text-white px-8 py-4 font-label-caps text-label-caps hover:bg-white/5 transition-all"
                 >
                   BECOME A VENDOR
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -453,7 +508,7 @@ function HomePage() {
       <section className="py-stack-lg px-6 md:px-margin-desktop max-w-container-max mx-auto">
         <div className="text-center mb-10">
           <h2 className="font-headline-lg text-headline-md md:text-headline-lg text-on-background uppercase">
-            A LOOK AT THE FLOOR
+            WE MISS YOU
           </h2>
         </div>
         <div className="glass-panel overflow-hidden aspect-[9/16] sm:aspect-video max-w-3xl mx-auto mb-4 bg-black">
@@ -469,32 +524,9 @@ function HomePage() {
             preload="auto"
           />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-6">
-          {([clip1, clip2, clip3] as Array<{ url: string }>).map((c, i) => (
-            <div key={c.url} className="glass-panel overflow-hidden aspect-[9/16] bg-black">
-              <video
-                key={c.url}
-                src={c.url}
-                className="w-full h-full object-contain"
-                loop
-                playsInline
-                controls
-                preload="metadata"
-              />
-            </div>
-          ))}
-        </div>
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-3 max-w-4xl mx-auto">
-          {HEADLINERS.concat(SUPPORT).slice(0, 6).map((a) => (
-            <div key={a.name} className="aspect-square overflow-hidden glass-panel">
-              <img
-                src={resolveImage(a.image)}
-                alt={a.name}
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-              />
-            </div>
-          ))}
-        </div>
+        <p className="text-center font-label-caps text-[12px] tracking-[0.3em] text-on-background/60">
+          RON CARROLL
+        </p>
       </section>
 
       {/* ── MOMENTS ──────────────────────────────────────────────────────── */}
@@ -507,6 +539,13 @@ function HomePage() {
           </div>
           <Carousel
             opts={{ align: "start", loop: true }}
+            plugins={[
+              Autoplay({
+                delay: 3000,
+                stopOnInteraction: false,
+                stopOnMouseEnter: true,
+              }),
+            ]}
             className="max-w-5xl mx-auto"
           >
             <CarouselContent className="-ml-4">
@@ -522,10 +561,14 @@ function HomePage() {
                       loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                    <figcaption className="absolute bottom-0 left-0 right-0 p-4 text-center font-label-caps text-label-caps tracking-[0.3em] text-on-background">
-                      {m.caption}
-                    </figcaption>
+                    {m.caption && (
+                      <>
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                        <figcaption className="absolute bottom-0 left-0 right-0 p-4 text-center font-label-caps text-label-caps tracking-[0.3em] text-on-background">
+                          {m.caption}
+                        </figcaption>
+                      </>
+                    )}
                   </figure>
                 </CarouselItem>
               ))}
@@ -534,7 +577,7 @@ function HomePage() {
             <CarouselNext className="hidden md:flex -right-4 bg-background/80 border-white/20 text-on-background hover:bg-primary-container hover:text-white" />
           </Carousel>
           <p className="text-center text-on-background/40 text-body-md mt-6 italic">
-            Swipe to see more.
+            Auto-scrolling · hover to pause.
           </p>
         </div>
       </section>

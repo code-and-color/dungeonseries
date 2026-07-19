@@ -64,8 +64,8 @@ export const events: CalendarEvent[] = [
     id: "festival-2026",
     date: "2026-08-09",
     dateLabel: "AUGUST 9, 2026",
-    timeLabel: "8:00 AM — 8:00 PM",
-    title: "DUNGEON SERIES FESTIVAL",
+    timeLabel: "GATES 9:00 AM · MUSIC 10:00 AM — 8:00 PM",
+    title: "DUNGEON SERIES OUTSIDE",
     venue: "1039 E 43rd Street, Chicago, IL",
     blurb:
       "The marquee event presented by Ty Harvey. ",
