@@ -300,11 +300,7 @@ function HomePage() {
             className="mx-auto w-28 md:w-36 mb-8 drop-shadow-[0_0_30px_rgba(255,85,64,0.35)]"
           />
           <p className="font-label-caps text-label-caps text-primary-container tracking-[0.4em] mb-6">
-<<<<<<< HEAD
             DUNGEON SERIES LIVE OUTSIDE
-=======
-            DUNGEON SERIES OUTSIDE
->>>>>>> 113a1e63a284f0df1e3da31dd76abb7ff91f90be
           </p>
           <h1 className="font-headline-xl text-headline-lg md:text-headline-xl text-on-background leading-[0.9] uppercase mb-8">
             DUNGEON SERIES<br />LIVE OUTSIDE.
