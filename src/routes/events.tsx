@@ -5,9 +5,9 @@ import { ScheduleTable } from "@/components/site/ScheduleTable";
 
 const festival = events.find((e) => e.featured) ?? events[0];
 
-const EVENTS_TITLE = "Dungeon Series Outside · August 9, 2026 · Chicago";
+const EVENTS_TITLE = "Dungeon Series Live Outside · August 9, 2026 · Chicago";
 const EVENTS_DESC =
-  "Dungeon Series Outside returns August 9, 2026 in Chicago. One day. One destination. Get tickets, view the lineup, and join us.";
+  "Dungeon Series Live Outside returns August 9, 2026 in Chicago. One day. One destination. Get tickets, view the lineup, and join us.;
 
 export const Route = createFileRoute("/events")({
   head: () => ({
