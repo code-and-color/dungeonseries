@@ -40,7 +40,7 @@ function VendorsPage() {
             <span className="text-primary-container">DUNGEON</span>
           </h1>
           <p className="font-body-lg text-body-lg text-secondary max-w-2xl mt-4">
-            Join us at Room 43 for the Dungeon Series Festival. We host local DJs to curate a unique atmosphere. Download the vendor packet to join in and promote 
+            Join us for the Dungeon Series Live Outside. We host local DJs to curate a unique atmosphere. Download the vendor packet to join in and promote 
             your business with us.
           </p>
         </section>

@@ -108,8 +108,8 @@ const SUPPORT: Artist[] = [
 
 const STATS = [
   { value: "1", suffix: "", label: "DAY OF MUSIC" },
-  { value: "12", suffix: "+", label: "HOURS" },
-  { value: "20", suffix: "+", label: "ARTISTS" },
+  { value: "10", suffix: "+", label: "HOURS" },
+  { value: "10", suffix: "+", label: "ARTISTS" },
 ];
 
 const FAQS = [
@@ -261,10 +261,10 @@ function HomePage() {
             className="mx-auto w-28 md:w-36 mb-8 drop-shadow-[0_0_30px_rgba(255,85,64,0.35)]"
           />
           <p className="font-label-caps text-label-caps text-primary-container tracking-[0.4em] mb-6">
-            THE DUNGEON SERIES FESTIVAL
+            DUNGEON SERIES LIVE OUTSIDE
           </p>
           <h1 className="font-headline-xl text-headline-lg md:text-headline-xl text-on-background leading-[0.9] uppercase mb-8">
-            THE DESTINATION<br />IN CHICAGO.
+            DUNGEON SERIES<br />LIVE OUTSIDE.
           </h1>
           <p className="font-body-lg text-on-background/70 max-w-xl mx-auto mb-10">
             {festival.dateLabel} · {festival.venue}
@@ -452,9 +452,6 @@ function HomePage() {
       {/* ── VIDEO GALLERY ────────────────────────────────────────────────── */}
       <section className="py-stack-lg px-6 md:px-margin-desktop max-w-container-max mx-auto">
         <div className="text-center mb-10">
-          <p className="font-label-caps text-label-caps text-primary-container tracking-[0.3em] mb-3">
-            INSIDE ROOM 43
-          </p>
           <h2 className="font-headline-lg text-headline-md md:text-headline-lg text-on-background uppercase">
             A LOOK AT THE FLOOR
           </h2>
@@ -504,11 +501,8 @@ function HomePage() {
       <section className="py-stack-lg bg-surface-container-lowest border-y border-white/5">
         <div className="px-6 md:px-margin-desktop max-w-container-max mx-auto">
           <div className="text-center mb-10">
-            <p className="font-label-caps text-label-caps text-primary-container tracking-[0.3em] mb-3">
-              MOMENTS FROM THE DUNGEON
-            </p>
             <h2 className="font-headline-lg text-headline-md md:text-headline-lg text-on-background uppercase">
-              SCENES FROM PAST EVENTS
+              DUNGEON SERIES SCENES FROM PAST EVENTS
             </h2>
           </div>
           <Carousel
