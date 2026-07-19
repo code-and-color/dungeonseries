@@ -21,11 +21,13 @@ export function Header() {
       <nav className="flex justify-between items-center px-6 md:px-margin-desktop py-4 max-w-container-max mx-auto">
         <div className="flex items-center gap-12">
           <Link to="/" className="flex items-center" onClick={() => setOpen(false)}>
-            <img
-              src={`${assetBase}og-image.png`}
-              alt="Dungeon Series"
-              className="h-8 md:h-10 w-auto object-contain"
-            />
+            <span className="inline-flex items-center justify-center rounded-full bg-inverse-surface p-1.5 shadow-sm">
+              <img
+                src={`${assetBase}og-image.png`}
+                alt="Dungeon Series"
+                className="h-7 md:h-9 w-auto object-contain"
+              />
+            </span>
           </Link>
           <div className="hidden md:flex gap-8">
             {navLinks.map((l) => (
