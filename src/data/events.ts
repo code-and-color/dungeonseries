@@ -66,7 +66,7 @@ export const events: CalendarEvent[] = [
     dateLabel: "AUGUST 9, 2026",
     timeLabel: "GATES 9:00 AM · MUSIC 10:00 AM — 8:00 PM",
     title: "DUNGEON SERIES OUTSIDE",
-    venue: "1039 E 43rd Street, Chicago, IL",
+    venue: "4301 S Drexel Blvd, Chicago, IL 60653",
     blurb:
       "The marquee event presented by Ty Harvey. ",
     ticketUrl: `${TF}/festival-2026`,
@@ -104,19 +104,9 @@ export const events: CalendarEvent[] = [
         label: "COSEY",
       },
       {
-        src: "Dungeon Series Festival - Hardison.png",
-        alt: "Hardison — Dungeon Series Festival performer",
-        label: "HARDISON",
-      },
-      {
         src: "Dungeon Series Festival - Hunt (1).png",
         alt: "Hunt — Dungeon Series Festival performer",
         label: "HUNT",
-      },
-      {
-        src: "Dungeon Series Festival - Koko (1).png",
-        alt: "Koko — Dungeon Series Festival performer",
-        label: "KOKO",
       },
       {
         src: "Dungeon Series Festival - Maestro.png",
