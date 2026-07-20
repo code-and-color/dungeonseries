@@ -292,11 +292,22 @@ function HomePage() {
         </div>
 
         <div className="relative z-10 w-full px-6 md:px-margin-desktop max-w-container-max mx-auto py-24 text-center">
-          <img
-            src={`${baseUrl}og-image.png`}
-            alt="Dungeon Series"
-            className="mx-auto w-28 md:w-36 mb-8 drop-shadow-[0_0_30px_rgba(255,85,64,0.35)]"
-          />
+          <div className="relative mx-auto mb-8 w-40 md:w-52 aspect-square">
+            <div className="absolute -inset-8 rounded-full bg-primary-container/25 blur-3xl pointer-events-none" />
+            <div className="absolute inset-0 rounded-full border border-primary-container/40 pointer-events-none" />
+            <div className="relative w-full h-full rounded-full overflow-hidden bg-black shadow-[0_0_60px_rgba(255,85,64,0.4)]">
+              <picture>
+                <source srcSet={`${mediaBase}logo-spotlight.webp`} type="image/webp" />
+                <img
+                  src={`${mediaBase}logo-spotlight.gif`}
+                  alt="Dungeon Series spotlight logo"
+                  className="w-full h-full object-cover scale-[1.02] pointer-events-none"
+                />
+              </picture>
+              <div className="absolute inset-0 rounded-full shadow-[inset_0_0_50px_rgba(0,0,0,0.55)] pointer-events-none" />
+            </div>
+          </div>
+
           <h1 className="font-headline-xl text-headline-lg md:text-headline-xl text-on-background leading-[0.9] uppercase mb-8">
             DUNGEON SERIES<br />LIVE OUTSIDE.
           </h1>
