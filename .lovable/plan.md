@@ -1,28 +1,16 @@
-## Changes
+# Swap the home hero logo for the spotlight emblem
 
-1. **New Jamie 3:26 headliner photo**
-   - Convert the uploaded photo to black & white and save as `public/events/Jamie326_BW.png`.
-   - Update `HEADLINERS` in `src/routes/index.tsx` to point to the new file (replaces `Jamie326_Elevator.png`).
+The spotlight will look better — it's already circular, animated, and glow-blended into the dark background, so it naturally solves the "cutout" problem instead of just softening it.
 
-2. **Remove the "HEADLINER" label**
-   - Delete the small `HEADLINER` badge rendered under each headliner card in `src/routes/index.tsx` (line ~403) and `src/routes/events.tsx` (line ~165). The artists themselves stay; only the word is removed.
+## Change
 
-3. **Remove flyers** from `src/data/events.ts`
-   - Delete the `KOKO` and `HARDISON` entries from the `flyers` array on the festival event.
+**`src/routes/index.tsx`** — hero section (~line 295):
 
-4. **Footer cleanup** (`src/components/site/Footer.tsx`)
-   - Remove the `TWITTER`, `YOUTUBE`, and `TERMS` links.
-   - Remove the `ROOM 43` label and the email-address input/subscribe block entirely.
-   - Keep only the logo/copyright line and the `INSTAGRAM` link.
+Replace the flat `<img src="og-image.png" ...>` with the same spotlight emblem used on the splash page:
 
-5. **Address update — global**
-   - Replace every instance of `1039 E 43rd Street` / `1039 E 43RD ST` with **`4301 S Drexel Blvd, Chicago, IL 60653`**.
-   - Files: `src/data/events.ts` (venue), `src/components/site/Footer.tsx` (copyright line), plus any other occurrences a quick `rg` sweep finds (contact page, SEO meta, JSON-LD, etc.).
+- Circular container (`rounded-full`, `overflow-hidden`) sized ~w-40 md:w-52
+- Inside: `<picture>` with `logo-spotlight.webp` source + `logo-spotlight.gif` fallback, `object-cover`
+- Ambient crimson radial glow behind it + thin crimson ring
+- Same spacing above the "DUNGEON SERIES LIVE OUTSIDE" headline
 
-6. **FAQ update** (`src/routes/index.tsx`, ~line 172)
-   - Change the "Can I bring outside food or drinks?" answer to:
-     > "Outside food: yes. No grills, no glass bottles. You can bring tents."
-
-## Out of scope
-- No layout, color, or typography changes.
-- Headliner ordering, other flyers, and other FAQ items stay as-is.
+No other pages or assets change. Splash page stays as-is.
