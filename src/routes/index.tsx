@@ -301,7 +301,7 @@ function HomePage() {
                 <img
                   src={`${mediaBase}logo-spotlight.gif`}
                   alt="Dungeon Series spotlight logo"
-                  className="w-full h-full object-cover scale-[1.02] pointer-events-none"
+                  className="w-full h-full object-contain pointer-events-none"
                 />
               </picture>
               <div className="absolute inset-0 rounded-full shadow-[inset_0_0_70px_rgba(0,0,0,0.55)] pointer-events-none" />
