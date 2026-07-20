@@ -212,7 +212,7 @@ function Splash({ onEnter, ticketUrl }: { onEnter: () => void; ticketUrl: string
               <img
                 src={`${mediaBase}logo-spotlight.gif`}
                 alt="Dungeon Series spotlight logo"
-                className="w-full h-full object-cover scale-[1.02] pointer-events-none"
+                className="w-full h-full object-contain pointer-events-none"
               />
             </picture>
 
