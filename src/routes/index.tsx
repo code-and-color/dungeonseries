@@ -292,10 +292,10 @@ function HomePage() {
         </div>
 
         <div className="relative z-10 w-full px-6 md:px-margin-desktop max-w-container-max mx-auto py-24 text-center">
-          <div className="relative mx-auto mb-8 w-40 md:w-52 aspect-square">
-            <div className="absolute -inset-8 rounded-full bg-primary-container/25 blur-3xl pointer-events-none" />
+          <div className="relative mx-auto mb-10 w-72 md:w-[26rem] aspect-square">
+            <div className="absolute -inset-14 rounded-full bg-primary-container/30 blur-3xl pointer-events-none" />
             <div className="absolute inset-0 rounded-full border border-primary-container/40 pointer-events-none" />
-            <div className="relative w-full h-full rounded-full overflow-hidden bg-black shadow-[0_0_60px_rgba(255,85,64,0.4)]">
+            <div className="relative w-full h-full rounded-full overflow-hidden bg-black shadow-[0_0_100px_rgba(255,85,64,0.5)]">
               <picture>
                 <source srcSet={`${mediaBase}logo-spotlight.webp`} type="image/webp" />
                 <img
@@ -304,7 +304,7 @@ function HomePage() {
                   className="w-full h-full object-cover scale-[1.02] pointer-events-none"
                 />
               </picture>
-              <div className="absolute inset-0 rounded-full shadow-[inset_0_0_50px_rgba(0,0,0,0.55)] pointer-events-none" />
+              <div className="absolute inset-0 rounded-full shadow-[inset_0_0_70px_rgba(0,0,0,0.55)] pointer-events-none" />
             </div>
           </div>
 
