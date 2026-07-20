@@ -73,7 +73,7 @@ function VendorsPage() {
             </h2>
           </div>
           <p className="font-body-md text-secondary max-w-2xl">
-            Email <span className="text-primary">tyfharvey2@gmail.com</span> with your packet, menu
+            Email <span className="text-primary">43rdStreetMusicFestival@gmail.com</span> with your packet, menu
             / product list, and any electrical or refrigeration needs. Applications are reviewed on
             a rolling basis until the floor is full.
           </p>

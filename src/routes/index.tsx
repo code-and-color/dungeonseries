@@ -172,7 +172,7 @@ const FAQS = [
   },
   {
     q: "How do I become a vendor or sponsor?",
-    a: "Download the vendor packet at the bottom of this page, then email us at bookings@dungeonseries.com.",
+    a: "Download the vendor packet at the bottom of this page, then email us at 43rdStreetMusicFestival@gmail.com.",
   },
 ];
 
