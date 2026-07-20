@@ -41,7 +41,7 @@ function ContactPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
           {/* Email */}
           <a
-            href="mailto:tyharvey2@gmail.com"
+            href="mailto:43rdStreetMusicFestival@gmail.com"
             className="glass-panel p-8 group transition-all duration-300 hover:border-primary-container/50 block"
           >
             <span className="font-label-caps text-label-caps text-primary mb-4 block">
@@ -49,7 +49,7 @@ function ContactPage() {
             </span>
             <h3 className="font-headline-md text-headline-md mb-2 uppercase">Management</h3>
             <p className="font-body-md text-body-md text-on-surface-variant mb-6">
-              tyharvey2@gmail.com
+              43rdStreetMusicFestival@gmail.com
             </p>
             <span className="inline-flex items-center gap-2 font-label-caps text-label-caps text-white group-hover:text-primary transition-colors">
               SEND AN EMAIL
